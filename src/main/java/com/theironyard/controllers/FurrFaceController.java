@@ -47,7 +47,7 @@ public class FurrFaceController {
             user.petRating = petRating;
             users.save(user);
 
-        System.out.println("");
+       // System.out.println("");
         session.setAttribute("username", username);
         return user;
     }
