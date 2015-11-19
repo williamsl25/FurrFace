@@ -9,6 +9,8 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.util.List;
+
 
 /**
  * Created by DrScott on 11/19/15.
@@ -42,9 +44,17 @@ public class FurrFaceController {
             user.neighborhood = neighborhood;
             user.aboutMe = aboutMe;
             user.petRating = petRating;
+            users.save(user);
 
+        System.out.println("");
         session.setAttribute("username", username);
         return user;
+    }
+
+
+    @RequestMapping("/users")
+    public List<User> users(){
+        return (List<User>) users.findAll();
     }
 
 
