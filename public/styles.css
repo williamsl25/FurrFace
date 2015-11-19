@@ -1,0 +1,22 @@
+header {
+  height: 20%;
+  background-color: black;
+  width: 100%; }
+
+footer {
+  height: 20%;
+  background-color: black; }
+
+body {
+  margin: 0 auto;
+  padding: 0; }
+
+aside {
+  background-color: yellow;
+  display: inline-block;
+  width: 30%; }
+
+.petProfile {
+  display: inline-block;
+  width: 65%;
+  background-color: orange; }

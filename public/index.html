@@ -5,7 +5,12 @@
     <title>Furrface</title>
     <link rel="stylesheet" href="styles.css">
   </head>
+<header> header </header>
+
   <body>
+
+    <div class="petProfile">
+
       <form action="addUser" enctype="multipart/form-data" method="post">
         <div class="form-group">
           <label for="username">UserName</label>
@@ -13,7 +18,7 @@
         </div>
         <div class="form-group">
           <label for="password">Password</label>
-          <input type="password" name="password" class="form-control" id="password" placeholder="Password">
+          <input type="text" name="password" class="form-control" id="password" placeholder="Password">
         </div>
         <div class="form-group">
           <label for="imageURL">Image</label>
@@ -37,11 +42,15 @@
         </div>
         <div class="form-group">
           <label for="aboutMe">About Me</label>
-          <input type="text" name="aboutMe" id="aboutMe" class="form-control"/>
+          <input type="text" name="aboutMe" id="aboutMe" class="form-control">
         </div>
-        <button type="submit" class="btn btn-default">Submit</button>
-    </form>
 
+        <button type="submit" class="btn btn-default">Submit</button>
+</form>
+</div>
+
+<aside>find my furry friends</aside>
+<footer>footer</footer>
 
   <script src="bundle.js" charset="utf-8"></script>
   </body>
