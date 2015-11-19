@@ -49,7 +49,7 @@ public class FurrFaceController {
 
        // System.out.println("");
         session.setAttribute("username", username);
-       // return user;
+        response.sendRedirect("/");
     }
     @RequestMapping("/login")
     public void login(HttpSession session, HttpServletResponse response) throws IOException {
