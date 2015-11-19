@@ -9,6 +9,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.IOException;
 import java.util.List;
 
 
@@ -50,7 +51,18 @@ public class FurrFaceController {
         session.setAttribute("username", username);
         return user;
     }
+    @RequestMapping("/login")
+    public void login(HttpSession session, HttpServletResponse response) throws IOException {
+        String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+        if (user == null){
+            response.sendRedirect("/addUser");
+        } else {
+            response.sendRedirect("Home or whatever");
+        }
 
+
+    }
 
     @RequestMapping("/users")
     public List<User> users(){
