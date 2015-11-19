@@ -56,12 +56,16 @@ public class FurrFaceController {
         String username = (String) session.getAttribute("username");
         User user = users.findOneByUsername(username);
         if (user == null){
-            response.sendRedirect("/addUser");
+            response.sendRedirect("/");
         } else {
-            response.sendRedirect("Home or whatever");
+            response.sendRedirect("/");
         }
-
-
+    }
+    @RequestMapping("/logout")
+    public void logout(HttpServletResponse response, HttpSession session) throws IOException {
+        session.invalidate();
+        response.sendRedirect("/");
+        System.out.println("goodbye!");
     }
 
     @RequestMapping("/users")
