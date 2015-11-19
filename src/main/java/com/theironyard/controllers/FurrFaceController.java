@@ -67,10 +67,16 @@ public class FurrFaceController {
         response.sendRedirect("/");
         System.out.println("goodbye!");
     }
-
     @RequestMapping("/users")
     public List<User> users(){
         return (List<User>) users.findAll();
+    }
+
+    @RequestMapping("/currentUser")
+    public User currentUser(HttpSession session){
+        String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+        return user;
     }
 
 
