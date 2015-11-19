@@ -23,7 +23,7 @@ public class FurrFaceController {
 
 
     @RequestMapping("/addUser")
-    public User login(HttpServletResponse response,
+    public void addUser(HttpServletResponse response,
                       HttpSession session,
                       String username,
                       String password,
@@ -49,7 +49,7 @@ public class FurrFaceController {
 
        // System.out.println("");
         session.setAttribute("username", username);
-        return user;
+       // return user;
     }
     @RequestMapping("/login")
     public void login(HttpSession session, HttpServletResponse response) throws IOException {
