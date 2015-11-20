@@ -15,7 +15,7 @@ module.exports = Backbone.View.extend({
     this.$el.append(petView.render().el);
   },
   addAll: function(){
-    $('.content').html("");
+    $('.petView').html("");
     _.each(this.collection.models, this.addOne, this);
   },
 

@@ -28,7 +28,7 @@ module.exports = Backbone.View.extend({
     this.$el.append(petView.render().el);
   },
   addAll: function(){
-    $('.content').html("");
+    $('.petView').html("");
     _.each(this.collection.models, this.addOne, this);
   },
 
@@ -12791,10 +12791,12 @@ var Backbone = require('backbone');
 var $ = require('jquery');
 var _ = require('underscore');
 var LayOutView = require('./layoutView');
+var PetCollectionView = require('./collectionView');
+var AllPetsCollection = require('./allPetsCollection');
 
 module.exports = Backbone.Router.extend({
   routes: {
-    '': 'homePage',
+    //'': 'homePage',
     'about': 'aboutPage',
     'blahblah': 'someShit',
     'homePage': 'homePage'
@@ -12806,7 +12808,10 @@ module.exports = Backbone.Router.extend({
     console.log("some shits");
   },
   homePage: function () {
-    console.log("you've made it to home!!");
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
   },
   aboutPage: function () {
     console.log("you've made it to the about page");
@@ -12814,7 +12819,7 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./layoutView":3,"backbone":7,"jquery":8,"underscore":9}],12:[function(require,module,exports){
+},{"./allPetsCollection":1,"./collectionView":2,"./layoutView":3,"backbone":7,"jquery":8,"underscore":9}],12:[function(require,module,exports){
 module.exports = {
   pet: [
     '<img src="<%= imageURL %>">',
