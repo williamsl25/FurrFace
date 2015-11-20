@@ -6,7 +6,7 @@ var tmpl = require('./templates');
 
 
 module.exports = Backbone.View.extend({
-  template: _.template(tmpl.footer),
+  template: _.template(tmpl.aside),
   initialize: function(){
 
   },
@@ -15,4 +15,16 @@ module.exports = Backbone.View.extend({
     this.$el.html(markup);
     return this;
   },
+  sortType: function(){
+
+  },
+  sortNeighborhood: function(){
+
+  },
+  sortAge: function(){
+
+  },
+  goToProfile: function(){
+
+  }
 });
