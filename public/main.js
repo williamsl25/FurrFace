@@ -10,7 +10,8 @@ $(function () {
   var pets = new AllPetsCollection();
   pets.fetch().then(function () {
     //new PetsView({collection: pets});
-    new LayOutView();
+    new Router();
+    Backbone.history.start();
 
   });
 });
