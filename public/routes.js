@@ -7,7 +7,7 @@ var AllPetsCollection = require('./allPetsCollection');
 
 module.exports = Backbone.Router.extend({
   routes: {
-    'home': 'homePage',
+    'homePage': 'homePage',
     'mypet': 'editPet',
     'petslikeme': 'petLikeMe',
     'neighbors': 'Neighborhood',
