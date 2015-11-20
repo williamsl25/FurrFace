@@ -118,13 +118,11 @@ public class FurrFaceController {
         String username = (String) session.getAttribute("username");
         session.setAttribute("username", username);
         User user = users.findOneByUsername(username);
-        if (user == null){
-            response.sendRedirect("/");
-        } else if (!PasswordHash.validatePassword(password, user.password)) {
+        if (!PasswordHash.validatePassword(password, user.password)) {
                 throw new Exception("Wrong password");
                // response.sendRedirect("/");
             }
-              response.sendRedirect("/#homePage");
+        response.sendRedirect("/#homePage");
         }
 
     @RequestMapping("/logout")
