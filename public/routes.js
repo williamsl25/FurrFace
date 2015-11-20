@@ -7,16 +7,14 @@ var AllPetsCollection = require('./allPetsCollection');
 
 module.exports = Backbone.Router.extend({
   routes: {
-    //'': 'homePage',
-    'about': 'aboutPage',
-    'blahblah': 'someShit',
-    'homePage': 'homePage'
+    'homePage': 'homePage',
+    'mypet': 'editPet',
+    'petslikeme': 'petLikeMe',
+    'neighbors': 'Neighborhood',
+    'top': 'topFuzzie',
   },
   initialize: function (options) {
     new LayOutView();
-  },
-  someShit: function () {
-    console.log("some shits");
   },
   homePage: function () {
     var pets = new AllPetsCollection();
@@ -24,8 +22,29 @@ module.exports = Backbone.Router.extend({
       new PetCollectionView({collection: pets });
   });
   },
-  aboutPage: function () {
-    console.log("you've made it to the about page");
+  editPet: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  petLikeMe: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  Neighborhood: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  topFuzzie: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
   }
 
 });
