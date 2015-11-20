@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 import java.io.IOException;
@@ -23,6 +24,60 @@ import java.util.List;
 public class FurrFaceController {
     @Autowired
     UserRepository users;
+
+    @PostConstruct
+    public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
+        if (users.count() == 0){
+            User terry = new User();
+            terry.username = "Terry";
+            terry.password = PasswordHash.createHash("1234");
+            terry.petName = "Maggie";
+            terry.petRating = 0;
+            terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
+            terry.petType = "dog";
+            terry.imageURL = "http://theartmad.com/wp-content/uploads/2015/03/Baby-Bunny-11.jpg";
+            terry.petAge = 8;
+            terry.neighborhood = "Charleston";
+            users.save(terry);
+
+            User doug = new User();
+            doug.username = "Doug";
+            doug.password = PasswordHash.createHash("1234");
+            doug.petName = "Rowan";
+            doug.petRating = 10;
+            doug.aboutMe = "Hi, I'm Doug and I have a dog named Rowan!";
+            doug.petType = "dog";
+            doug.imageURL = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
+            doug.petAge = 8;
+            doug.neighborhood = "Charleston";
+            users.save(doug);
+
+            User kate = new User();
+            kate.username = "Kate";
+            kate.password = PasswordHash.createHash("1234");
+            kate.petName = "Katedog";
+            kate.petRating = 10;
+            kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
+            kate.petType = "dog";
+            kate.imageURL = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
+            kate.petAge = 8;
+            kate.neighborhood = "Charleston";
+            users.save(kate);
+
+            User lindsay = new User();
+            lindsay.username = "Lindsay";
+            lindsay.password = PasswordHash.createHash("1234");
+            lindsay.petName = "Lindsay cat";
+            lindsay.petRating = 10;
+            lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
+            lindsay.petType = "cat";
+            lindsay.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
+            lindsay.petAge = 8;
+            lindsay.neighborhood = "Charleston";
+            users.save(lindsay);
+        }
+
+    }
 
 
     @RequestMapping("/addUser")
