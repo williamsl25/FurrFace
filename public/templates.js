@@ -1,14 +1,12 @@
 module.exports = {
   pet: [
-    '<img src="<%= imageURL %>">',
-    '<h3><%= petName %></h3>',
-    '<h4><%= petAge %></h4>',
-    '<p><%= petType %></p>',
+    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
+    '<h4>,<%= petAge %></h4>',
     '<p><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
 
   ].join(""),
-  
+
   newUserForm: [
       '<form class= "petForm" action="addUser" enctype="multipart/form-data" method="post">',
         '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
