@@ -139,6 +139,24 @@ public class FurrFaceController {
         return user;
     }
 
+    @RequestMapping("/edit")
+    public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
+        String username = (String) session.getAttribute("username");
+        if (session.getAttribute("username") == null) {
+            throw new Exception("Not logged in.");
+        }
+        User user = users.findOneByUsername(username);
+        user.imageURL = imageURL;
+        user.petName = petName;
+        user.petType = petType;
+        user.petAge = petAge;
+        user.neighborhood = neighborhood;
+        user.aboutMe = aboutMe;
+        user.petRating = petRating;
+        users.save(user);
+        response.sendRedirect("/");
+    }
+
     @RequestMapping("/petType")
     public List<User> searchPetType (String petType){
         return users.findAllByPetType(petType);
@@ -147,6 +165,7 @@ public class FurrFaceController {
     public List<User> searchByNeighborhood (String neighborhood){
         return users.findAllByNeighborhood( neighborhood);
     }
+
 
     @RequestMapping("/petAge")
     public List<User> searchByPetAge (int petAge){
