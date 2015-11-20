@@ -83,14 +83,14 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
         return user;
     }
-    @RequestMapping("/randomUser")
+    /*@RequestMapping("/randomUser")
     public User randomUser(){
         return users.findRandomUser();
-    }
-    @RequestMapping("/ratings")
+    }*/
+   /* @RequestMapping("/ratings")
     public List<User> ratedUsers(){
         return users.findAllOrderByPetRatingAsc();
-    }
+    }*/
 
 
 }
