@@ -4,6 +4,7 @@ var _ = require('underscore');
 var LayOutView = require('./layoutView');
 var PetCollectionView = require('./collectionView');
 var AllPetsCollection = require('./allPetsCollection');
+var HomePageView = require('./homePageView');
 
 module.exports = Backbone.Router.extend({
   routes: {
@@ -20,6 +21,7 @@ module.exports = Backbone.Router.extend({
     var pets = new AllPetsCollection();
     pets.fetch().then(function () {
       new PetCollectionView({collection: pets });
+      new HomePageView();
   });
   },
   editPet: function () {

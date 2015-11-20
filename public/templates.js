@@ -51,6 +51,12 @@ aside:[
       '<li><a href="#homePage">Top Fuzzies</a></li>',
     '</ul>',
   '</nav>'
-].join("")
+].join(""),
+  header: [
+  '<h1>Furr Face</h1>'
+  ].join(""),
+  footer: [
+    '<h1>Footer</h1>',
+  ].join(""),
 
 };
