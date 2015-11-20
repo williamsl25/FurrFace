@@ -11,7 +11,7 @@ module.exports = Backbone.Router.extend({
     'homePage': 'homePage'
   },
   initialize: function (options) {
-    new LayoutView();
+    new LayOutView();
   },
   someShit: function () {
     console.log("some shits");

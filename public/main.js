@@ -2,7 +2,7 @@ var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
 var LayOutView = require('./layoutView');
-var Router = require('/routes');
+var Router = require('./routes');
 var Backbone = require('backbone');
 
 
