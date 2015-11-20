@@ -11,6 +11,11 @@ import java.util.List;
  */
 public interface UserRepository extends CrudRepository<User, Integer> {
        User findOneByUsername(String username);
+       List<User> findAllByNeighborhood(String neighborhood);
+       List<User> findAllByPetType(String petType);
+       List<User> findAllByPetAge(int petAge);
+
+
       // List<User> findAllOrderByPetRatingAsc();
 
        //@Query("SELECT u FROM users u ORDER BY RAND()")
