@@ -115,7 +115,9 @@ public class FurrFaceController {
     }
     @RequestMapping("/login")
     public void login(HttpSession session, HttpServletResponse response, String password) throws Exception {
+
         String username = (String) session.getAttribute("username");
+        session.setAttribute("username", username);
         User user = users.findOneByUsername(username);
         if (user == null){
             response.sendRedirect("/");
