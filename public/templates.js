@@ -42,7 +42,7 @@ loginform: [
 ].join(""),
 
 aside:[
-  '<nav>'
+  '<nav>',
     '<ul>',
       '<li><a href="#homePage">Home</a></li>',
       '<li><a href="#homePage">Edit My Pet Page</a></li>',
@@ -51,6 +51,6 @@ aside:[
       '<li><a href="#homePage">Top Fuzzies</a></li>',
     '</ul>',
   '</nav>'
-].join("");
+].join("")
 
 };
