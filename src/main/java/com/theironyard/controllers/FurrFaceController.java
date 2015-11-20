@@ -77,7 +77,7 @@ public class FurrFaceController {
             lindsay.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
             lindsay.petAge = 8;
             lindsay.neighborhood = "Charleston";
-            users.save(lindsay);
+            users.save(lindsay); //hi
 
             User bryan = new User();
             bryan.username = "Bryan";
