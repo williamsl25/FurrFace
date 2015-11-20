@@ -1,5 +1,5 @@
 header{
-  height:100px;
+  height:200px;
   background-color: black;
   margin: 0 auto;
   padding: 0;
@@ -13,7 +13,8 @@ footer{
 }
 body{
   margin: 0 auto;
-font-family: 'Raleway', sans-serif;
+  font-family: 'Raleway', sans-serif;
+  padding: 0;
 }
 h1{
   font-size: 100px;
@@ -39,14 +40,16 @@ aside{
   padding: 0;
 
 }
+.form-control{
+  width: 650px;
+}
 input{
-width: 400px;
 height: 30px;
-padding: 5px;
+padding: 10px;
 }
 form{
   margin: 0 auto;
-  padding-left: 170px;
+  padding-left: 55px;
   padding-top: 30px;
 }
 img{
@@ -55,4 +58,5 @@ img{
 article{
   display: inline-block;
   border: 5px solid black;
-}
+  margin:10px;
+  }
