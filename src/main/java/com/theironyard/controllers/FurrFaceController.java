@@ -4,6 +4,9 @@ import com.theironyard.entities.User;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -80,6 +83,7 @@ public class FurrFaceController {
     }
 
 
+
     @RequestMapping("/addUser")
     public void addUser(HttpServletResponse response,
                       HttpSession session,
@@ -107,7 +111,7 @@ public class FurrFaceController {
 
        // System.out.println("");
          session.setAttribute("username", username);
-         response.sendRedirect("/");
+         response.sendRedirect("/#homePage");
     }
     @RequestMapping("/login")
     public void login(HttpSession session, HttpServletResponse response, String password) throws Exception {
@@ -119,6 +123,7 @@ public class FurrFaceController {
                 throw new Exception("Wrong password");
                // response.sendRedirect("/");
             }
+              response.sendRedirect("/#homePage");
         }
 
     @RequestMapping("/logout")
