@@ -138,6 +138,21 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
         return user;
     }
+
+    @RequestMapping("/petType")
+    public List<User> searchPetType (String petType){
+        return users.findAllByPetType(petType);
+    }
+    @RequestMapping("/neighborhood")
+    public List<User> searchByNeighborhood (String neighborhood){
+        return users.findAllByNeighborhood( neighborhood);
+    }
+
+    @RequestMapping("/petAge")
+    public List<User> searchByPetAge (int petAge){
+        return users.findAllByPetAge(petAge);
+    }
+
     /*@RequestMapping("/randomUser")
     public User randomUser(){
         return users.findRandomUser();
