@@ -109,6 +109,8 @@ module.exports = Backbone.View.extend({
   className: 'pet',
   template: _.template(tmpl.pet),
   initialize: function(){},
+
+
   render: function(){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -12796,16 +12798,14 @@ var AllPetsCollection = require('./allPetsCollection');
 
 module.exports = Backbone.Router.extend({
   routes: {
-    //'': 'homePage',
-    'about': 'aboutPage',
-    'blahblah': 'someShit',
-    'homePage': 'homePage'
+    'homePage': 'homePage',
+    'mypet': 'editPet',
+    'petslikeme': 'petLikeMe',
+    'neighbors': 'Neighborhood',
+    'top': 'topFuzzie',
   },
   initialize: function (options) {
     new LayOutView();
-  },
-  someShit: function () {
-    console.log("some shits");
   },
   homePage: function () {
     var pets = new AllPetsCollection();
@@ -12813,8 +12813,29 @@ module.exports = Backbone.Router.extend({
       new PetCollectionView({collection: pets });
   });
   },
-  aboutPage: function () {
-    console.log("you've made it to the about page");
+  editPet: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  petLikeMe: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  Neighborhood: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  topFuzzie: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
   }
 
 });
@@ -12822,10 +12843,8 @@ module.exports = Backbone.Router.extend({
 },{"./allPetsCollection":1,"./collectionView":2,"./layoutView":3,"backbone":7,"jquery":8,"underscore":9}],12:[function(require,module,exports){
 module.exports = {
   pet: [
-    '<img src="<%= imageURL %>">',
-    '<h3><%= petName %></h3>',
-    '<h4><%= petAge %></h4>',
-    '<p><%= petType %></p>',
+    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
+    '<h4>,<%= petAge %></h4>',
     '<p><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
 
@@ -12864,6 +12883,19 @@ loginform: [
     '</form>'
 
 ].join(""),
+
+aside:[
+  '<nav>',
+    '<ul>',
+      '<li><a href="#homePage">Home</a></li>',
+      '<li><a href="#homePage">Edit My Pet Page</a></li>',
+      '<li><a href="#homePage">See Pets Like Me</a></li>',
+      '<li><a href="#homePage">See Pets in My Neighborhood</a></li>',
+      '<li><a href="#homePage">Top Fuzzies</a></li>',
+    '</ul>',
+  '</nav>'
+].join("")
+
 };
 
 },{}]},{},[5]);
