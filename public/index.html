@@ -4,52 +4,30 @@
     <meta charset="utf-8">
     <title>Furrface</title>
     <link rel="stylesheet" href="styles.css">
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js" integrity="sha512-K1qjQ+NcF2TYO/eI3M6v8EiNYZfA95pQumfvcVrTHtwQVDG+aHRqLi/ETn2uB+1JqwYqVG3LIvdm9lj6imS/pQ==" crossorigin="anonymous"></script>
   </head>
-<header> header </header>
+<header> <h1>Furr  Face</h1> </header>
 
   <body>
 
     <div class="petProfile">
-
-      <form action="addUser" enctype="multipart/form-data" method="post">
-        <div class="form-group">
-          <label for="username">UserName</label>
-          <input type="text" name="username" class="form-control" id="username" placeholder="Username">
-        </div>
-        <div class="form-group">
-          <label for="password">Password</label>
-          <input type="text" name="password" class="form-control" id="password" placeholder="Password">
-        </div>
-        <div class="form-group">
-          <label for="imageURL">Image</label>
-          <input type="text" name="imageURL" class="form-control" id="imageURL" placeholder="imageURL">
-        </div>
-        <div class="form-group">
-          <label for="petName">Pet Name</label>
-          <input type="text" name="petName" class="form-control" id="petName" placeholder="petName">
-        </div>
-        <div class="form-group">
-          <label for="petType">Type of Pet</label>
-          <input type="text" name="petType" class="form-control" id="petType" placeholder="Pet Type">
-        </div>
-        <div class="form-group">
-          <label for="petAge">Age of Pet</label>
-          <input type="text" name="petAge" class="form-control" id="petAge" placeholder="Pet Age">
-        </div>
-        <div class="form-group">
-          <label for="neighborhood">Neighborhood</label>
-          <input type="text" name="neighborhood"class="form-control" id="neighborhood" placeholder="Neighborhood">
-        </div>
-        <div class="form-group">
-          <label for="aboutMe">About Me</label>
-          <input type="text" name="aboutMe" id="aboutMe" class="form-control">
-        </div>
-
+<div class="petView">
+      <form class= "petForm" action="addUser" enctype="multipart/form-data" method="post">
+          <!-- <input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>
+          <input type="text" name="password" class="form-control" id="password" placeholder="Password"><br> -->
+          <input type="text" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!"><br>
+          <input type="text" name="petName" class="form-control" id="petName" placeholder="What's your pet's name?"><br>
+          <input type="text" name="petType" class="form-control" id="petType" placeholder="What type of pet do you have?"><br>
+          <input type="text" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?"><br>
+          <input type="text" name="neighborhood"class="form-control" id="neighborhood" placeholder="What neighborhood do you live in?"><br>
+          <input type="text" name="aboutMe" id="aboutMe" class="form-control" placeholder="My Pet's Interests"><br>
         <button type="submit" class="btn btn-default">Submit</button>
 </form>
 </div>
 
 <aside>find my furry friends</aside>
+</div>
 <footer>footer</footer>
 
   <script src="bundle.js" charset="utf-8"></script>

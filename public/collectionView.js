@@ -6,7 +6,7 @@ var PetView = require('./modelView');
 var PetModel = require('./petModel');
 
 module.exports = Backbone.View.extend({
-  el: ".petProfile",
+  el: ".petView",
   initialize: function(){
     this.addAll();
   },

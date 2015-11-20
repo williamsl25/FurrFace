@@ -1,22 +1,56 @@
 header {
-  height: 20%;
+  height: 100px;
   background-color: black;
-  width: 100%; }
+  margin: 0 auto;
+  padding: 0;
+  color: white; }
 
 footer {
-  height: 20%;
-  background-color: black; }
+  height: 30px;
+  background-color: black;
+  margin: 0 auto;
+  padding: 0; }
 
 body {
   margin: 0 auto;
-  padding: 0; }
+  font-family: 'Raleway', sans-serif; }
+
+h1 {
+  font-size: 100px; }
 
 aside {
   background-color: yellow;
   display: inline-block;
-  width: 30%; }
+  width: 30%;
+  height: 500px;
+  padding: 0 0 0 0;
+  vertical-align: top; }
 
 .petProfile {
+  margin: 0 auto;
+  padding-left: 65px; }
+
+.petView {
   display: inline-block;
   width: 65%;
-  background-color: orange; }
+  background-color: orange;
+  height: 500px;
+  margin: 0 auto;
+  padding: 0; }
+
+input {
+  width: 400px;
+  height: 30px;
+  padding: 5px; }
+
+form {
+  margin: 0 auto;
+  padding-left: 170px;
+  padding-top: 30px; }
+
+img {
+  max-height: 200px; }
+
+article {
+  display: inline-block;
+  border: 5px solid black; }
