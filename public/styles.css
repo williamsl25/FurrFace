@@ -1,5 +1,13 @@
+body {
+  margin: 0 auto;
+  font-family: 'Raleway', sans-serif;
+  padding: 0; }
+
+header img {
+  max-height: 200px; }
+
 header {
-  height: 200px;
+  max-height: 400px;
   background-color: black;
   margin: 0 auto;
   padding: 0;
@@ -11,13 +19,11 @@ footer {
   margin: 0 auto;
   padding: 0; }
 
-body {
-  margin: 0 auto;
-  font-family: 'Raleway', sans-serif;
-  padding: 0; }
-
 h1 {
-  font-size: 100px; }
+  text-align: center;
+  font-size: 100px;
+  padding: 0;
+  margin: 0 auto; }
 
 aside {
   background-color: yellow;
@@ -28,16 +34,15 @@ aside {
   vertical-align: top; }
 
 .petProfile {
-  margin: 0 auto;
-  padding-left: 65px; }
+  margin: 0 auto; }
 
 .petView {
   display: inline-block;
   width: 65%;
   background-color: orange;
-  height: 500px;
+  height: 100%;
   margin: 0 auto;
-  padding: 0; }
+  padding-left: 30px; }
 
 .form-control {
   width: 650px; }
@@ -52,8 +57,15 @@ form {
   padding-top: 30px; }
 
 img {
-  max-height: 200px; }
+  height: 210px;
+  width: 210px;
+  overflow: hidden; }
 
 article {
   display: inline-block;
-  border: 5px solid black; }
+  padding: 5px;
+  border: 5px solid black;
+  width: 360px;
+  height: 360px;
+  overflow: hidden;
+  margin: 10px; }

@@ -10,6 +10,8 @@ module.exports = Backbone.View.extend({
   className: 'pet',
   template: _.template(tmpl.pet),
   initialize: function(){},
+
+
   render: function(){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
