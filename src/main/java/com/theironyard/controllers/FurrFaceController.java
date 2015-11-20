@@ -78,6 +78,18 @@ public class FurrFaceController {
             lindsay.petAge = 8;
             lindsay.neighborhood = "Charleston";
             users.save(lindsay);
+
+            User bryan = new User();
+            bryan.username = "Bryan";
+            bryan.password = PasswordHash.createHash("1234");
+            bryan.petName = "Bryan's cat";
+            bryan.petType = "cat";
+            bryan.petRating = 8;
+            bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
+            bryan.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
+            bryan.petAge = 5;
+            bryan.neighborhood = "Mount Pleasant";
+            users.save(bryan);
         }
 
     }
