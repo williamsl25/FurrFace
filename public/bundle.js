@@ -10,7 +10,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./petModel":8,"backbone":5}],2:[function(require,module,exports){
+},{"./petModel":10,"backbone":7}],2:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -28,25 +28,75 @@ module.exports = Backbone.View.extend({
     this.$el.append(petView.render().el);
   },
   addAll: function(){
-    $('.content').html("");
+    $('.petView').html("");
     _.each(this.collection.models, this.addOne, this);
   },
 
 });
 
-},{"./modelView":4,"./petModel":8,"backbone":5,"jquery":6,"underscore":7}],3:[function(require,module,exports){
+},{"./modelView":6,"./petModel":10,"backbone":7,"jquery":8,"underscore":9}],3:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _= require('underscore');
+var LogInView = require('./logInView');
+
+
+module.exports = Backbone.View.extend({
+  el: '.petProfile',
+  initialize: function(){
+    var self= this;
+    var loginHTML = new LogInView();
+
+      self.$el.find('.petView').html(loginHTML.render().el);
+
+
+    },
+
+
+
+  });
+
+},{"./logInView":4,"backbone":7,"jquery":8,"underscore":9}],4:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+Backbone.$ = $;
+var _ = require('underscore');
+var tmpl = require('./templates');
+
+
+module.exports = Backbone.View.extend({
+  template: _.template(tmpl.loginform),
+  initialize: function(){
+
+  },
+  render: function(){
+    var markup = this.template({});
+    this.$el.html(markup);
+    return this;
+  },
+});
+
+},{"./templates":12,"backbone":7,"jquery":8,"underscore":9}],5:[function(require,module,exports){
 var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
+var LayOutView = require('./layoutView');
+var Router = require('./routes');
+var Backbone = require('backbone');
+
 
 $(function () {
   var pets = new AllPetsCollection();
   pets.fetch().then(function () {
-    new PetsView({collection: pets});
+    //new PetsView({collection: pets});
+    new Router();
+    Backbone.history.start();
+
   });
 });
 
-},{"./allPetsCollection":1,"./collectionView":2,"jquery":6}],4:[function(require,module,exports){
+},{"./allPetsCollection":1,"./collectionView":2,"./layoutView":3,"./routes":11,"backbone":7,"jquery":8}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 var _ = require('underscore');
@@ -68,7 +118,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":8,"./templates":9,"backbone":5,"jquery":6,"underscore":7}],5:[function(require,module,exports){
+},{"./petModel":10,"./templates":12,"backbone":7,"jquery":8,"underscore":9}],7:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -1966,7 +2016,7 @@ module.exports = Backbone.View.extend({
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":6,"underscore":7}],6:[function(require,module,exports){
+},{"jquery":8,"underscore":9}],8:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11178,7 +11228,7 @@ return jQuery;
 
 }));
 
-},{}],7:[function(require,module,exports){
+},{}],9:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12728,7 +12778,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}],8:[function(require,module,exports){
+},{}],10:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -12736,7 +12786,40 @@ module.exports = Backbone.Model.extend({
   initialize: function () {}
 });
 
-},{"backbone":5}],9:[function(require,module,exports){
+},{"backbone":7}],11:[function(require,module,exports){
+var Backbone = require('backbone');
+var $ = require('jquery');
+var _ = require('underscore');
+var LayOutView = require('./layoutView');
+var PetCollectionView = require('./collectionView');
+var AllPetsCollection = require('./allPetsCollection');
+
+module.exports = Backbone.Router.extend({
+  routes: {
+    //'': 'homePage',
+    'about': 'aboutPage',
+    'blahblah': 'someShit',
+    'homePage': 'homePage'
+  },
+  initialize: function (options) {
+    new LayOutView();
+  },
+  someShit: function () {
+    console.log("some shits");
+  },
+  homePage: function () {
+    var pets = new AllPetsCollection();
+    pets.fetch().then(function () {
+      new PetCollectionView({collection: pets });
+  });
+  },
+  aboutPage: function () {
+    console.log("you've made it to the about page");
+  }
+
+});
+
+},{"./allPetsCollection":1,"./collectionView":2,"./layoutView":3,"backbone":7,"jquery":8,"underscore":9}],12:[function(require,module,exports){
 module.exports = {
   pet: [
     '<img src="<%= imageURL %>">',
@@ -12746,8 +12829,41 @@ module.exports = {
     '<p><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
 
-  ].join("")
+  ].join(""),
 
+  newUserForm: [
+      '<form class= "petForm" action="addUser" enctype="multipart/form-data" method="post">',
+        '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
+        '<input type="text" name="password" class="form-control" id="password" placeholder="Password"><br> ',
+        '<h3>Now is the time to introduce your FurrFace!</h3>',
+        '<input type="text" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
+        '<input type="text" name="petName" class="form-control" id="petName" placeholder="What is your pets name?">',
+        '<input type="text" name="petType" class="form-control" id="petType" placeholder="What type of pet do you have?">',
+        '<input type="text" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?">',
+        '<label for="male">What neighborhood do you live in?</label>',
+        '<select name="selectNeighborhood">',
+          '<option value="value1">James Island</option>',
+          '<option value="value2" selected>West Ashley</option>',
+          '<option value="value3">Mount Pleasant</option>',
+          '<option value="value3">South of Broad</option>',
+          '<option value="value3">Cannonborough</option>',
+          '<option value="value3">Wagner Terrace</option>',
+        '</select>',
+        '<input type="text" name="aboutMe" id="aboutMe" class="form-control" placeholder="My Pets Interests">',
+      '<button type="submit" class="btn btn-default">Submit</button>',
+      '</form>'
+
+  ].join(""),
+
+loginform: [
+
+  '<form class= "loginForm" action="login" enctype="multipart/form-data" method="post">',
+    '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
+    '<input type="text" name="password" class="form-control" id="password" placeholder="Password"><br> ',
+    '<button type="submit" class="btn btn-default">Submit</button>',
+    '</form>'
+
+].join(""),
 };
 
-},{}]},{},[3]);
+},{}]},{},[5]);

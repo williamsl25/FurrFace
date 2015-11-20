@@ -4,6 +4,9 @@ import com.theironyard.entities.User;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
@@ -79,7 +82,6 @@ public class FurrFaceController {
 
     }
 
-
     @RequestMapping("/addUser")
     public void addUser(HttpServletResponse response,
                       HttpSession session,
@@ -107,18 +109,17 @@ public class FurrFaceController {
 
        // System.out.println("");
          session.setAttribute("username", username);
-         response.sendRedirect("/");
+         response.sendRedirect("/#homePage");
     }
     @RequestMapping("/login")
-    public void login(HttpSession session, HttpServletResponse response, String password) throws Exception {
-        String username = (String) session.getAttribute("username");
+    public void login(HttpSession session, HttpServletResponse response, String password, String username) throws Exception {
+        session.setAttribute("username", username);
         User user = users.findOneByUsername(username);
-        if (user == null){
-            response.sendRedirect("/");
-        } else if (!PasswordHash.validatePassword(password, user.password)) {
+        if (!PasswordHash.validatePassword(password, user.password)) {
                 throw new Exception("Wrong password");
                // response.sendRedirect("/");
             }
+        response.sendRedirect("/#homePage");
         }
 
     @RequestMapping("/logout")
@@ -138,6 +139,40 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
         return user;
     }
+
+    @RequestMapping("/edit")
+    public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
+        String username = (String) session.getAttribute("username");
+        if (session.getAttribute("username") == null) {
+            throw new Exception("Not logged in.");
+        }
+        User user = users.findOneByUsername(username);
+        user.imageURL = imageURL;
+        user.petName = petName;
+        user.petType = petType;
+        user.petAge = petAge;
+        user.neighborhood = neighborhood;
+        user.aboutMe = aboutMe;
+        user.petRating = petRating;
+        users.save(user);
+        response.sendRedirect("/");
+    }
+
+    @RequestMapping("/petType")
+    public List<User> searchPetType (String petType){
+        return users.findAllByPetType(petType);
+    }
+    @RequestMapping("/neighborhood")
+    public List<User> searchByNeighborhood (String neighborhood){
+        return users.findAllByNeighborhood( neighborhood);
+    }
+
+
+    @RequestMapping("/petAge")
+    public List<User> searchByPetAge (int petAge){
+        return users.findAllByPetAge(petAge);
+    }
+
     /*@RequestMapping("/randomUser")
     public User randomUser(){
         return users.findRandomUser();
