@@ -82,8 +82,6 @@ public class FurrFaceController {
 
     }
 
-
-
     @RequestMapping("/addUser")
     public void addUser(HttpServletResponse response,
                       HttpSession session,
@@ -114,8 +112,7 @@ public class FurrFaceController {
          response.sendRedirect("/#homePage");
     }
     @RequestMapping("/login")
-    public void login(HttpSession session, HttpServletResponse response, String password) throws Exception {
-        String username = (String) session.getAttribute("username");
+    public void login(HttpSession session, HttpServletResponse response, String password, String username) throws Exception {
         session.setAttribute("username", username);
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
