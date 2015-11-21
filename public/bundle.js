@@ -12982,6 +12982,12 @@ module.exports = {
     '<h4><%= petAge %></h4>',
     '<p><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
+    '<div class="notes">',
+    '<h4>Comments:</h4>',
+    '<form class="noteForm" action="">',
+    '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
+    '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
+    '</form>'
 
   ].join(""),
 
