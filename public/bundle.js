@@ -12992,6 +12992,7 @@ module.exports = {
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>'
+    
 
   ].join(""),
 
