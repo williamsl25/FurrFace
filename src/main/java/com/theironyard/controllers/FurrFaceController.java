@@ -40,7 +40,7 @@ public class FurrFaceController {
             terry.petType = "dog";
             terry.imageURL = "http://theartmad.com/wp-content/uploads/2015/03/Baby-Bunny-11.jpg";
             terry.petAge = 8;
-            terry.neighborhood = "Charleston";
+            terry.neighborhood = "West Ashley";
             users.save(terry);
 
             User doug = new User();
@@ -52,7 +52,7 @@ public class FurrFaceController {
             doug.petType = "dog";
             doug.imageURL = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
             doug.petAge = 8;
-            doug.neighborhood = "Charleston";
+            doug.neighborhood = "James Island";
             users.save(doug);
 
             User kate = new User();
@@ -64,7 +64,7 @@ public class FurrFaceController {
             kate.petType = "dog";
             kate.imageURL = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
             kate.petAge = 8;
-            kate.neighborhood = "Charleston";
+            kate.neighborhood = "West Ashley";
             users.save(kate);
 
             User lindsay = new User();
@@ -76,7 +76,7 @@ public class FurrFaceController {
             lindsay.petType = "cat";
             lindsay.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
             lindsay.petAge = 8;
-            lindsay.neighborhood = "Charleston";
+            lindsay.neighborhood = "South of Broad";
             users.save(lindsay);
 
             User bryan = new User();
@@ -128,9 +128,9 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
         if (user==null){
             response.sendRedirect("/#newUser");
-        }else if  (!PasswordHash.validatePassword(password, user.password)) {
+        } else if  (!PasswordHash.validatePassword(password, user.password)) {
                 response.sendRedirect("/");
-            }
+            } else
         response.sendRedirect("/#homePage");
         }
 
