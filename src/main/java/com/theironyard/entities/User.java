@@ -23,7 +23,7 @@ public class User {
     public String password;
 
     @Column(nullable = false)
-    public String fileName;
+    public String imageURL;
 
     @Column(nullable = false)
     public String petName;
@@ -44,7 +44,7 @@ public class User {
     public int petRating;
 
     public String getFileName() {
-        return fileName;
+        return imageURL;
     }
 /*@Column(nullable = true)
     public List<String> comments;*/

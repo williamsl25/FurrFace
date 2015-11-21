@@ -30,7 +30,7 @@ public class FurrFaceController {
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
-       /* if (users.count() == 0){
+        if (users.count() == 0){
             User terry = new User();
             terry.username = "Terry";
             terry.password = PasswordHash.createHash("1234");
@@ -40,7 +40,7 @@ public class FurrFaceController {
             terry.petType = "dog";
 
 
-            terry.fileName = "http://theartmad.com/wp-content/uploads/2015/03/Baby-Bunny-11.jpg";
+            terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
             terry.petAge = 8;
             terry.neighborhood = "West Ashley";
 
@@ -53,7 +53,7 @@ public class FurrFaceController {
             doug.petRating = 10;
             doug.aboutMe = "Hi, I'm Doug and I have a dog named Rowan!";
             doug.petType = "dog";
-            doug.fileName = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGYCWXg-pfA_B5_7EgYpEGaD6HRbluKULpI6ptT2q_2AgosgO_EZFz4Gb6";
+            doug.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
             doug.petAge = 8;
             doug.neighborhood = "James Island";
             users.save(doug);
@@ -65,7 +65,7 @@ public class FurrFaceController {
             kate.petRating = 10;
             kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
             kate.petType = "dog";
-            kate.fileName = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
+            kate.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
             kate.petAge = 8;
             kate.neighborhood = "West Ashley";
             users.save(kate);
@@ -77,7 +77,7 @@ public class FurrFaceController {
             lindsay.petRating = 10;
             lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
             lindsay.petType = "cat";
-            lindsay.fileName = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
+            lindsay.imageURL = "tumblr_m7vve1Fqli1qzfb9so1_1280.jpg";
             lindsay.petAge = 8;
             lindsay.neighborhood = "South of Broad";
             users.save(lindsay);
@@ -89,11 +89,12 @@ public class FurrFaceController {
             bryan.petType = "cat";
             bryan.petRating = 8;
             bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
-            bryan.fileName = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
+            bryan.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png" ;
+
             bryan.petAge = 5;
             bryan.neighborhood = "Mount Pleasant";
             users.save(bryan);
-        }*/
+        }
 
     }
 
@@ -103,7 +104,7 @@ public class FurrFaceController {
                       String username,
                       String password,
                       //@RequestParam(defaultValue = "http://bit.ly/1I09WCO")String imageURL,
-                        MultipartFile photo,
+                        MultipartFile imageURL,
                       String petName,
                       @RequestParam(defaultValue = "unknown") String petType,
                       @RequestParam(defaultValue = "1") int petAge,
@@ -111,20 +112,19 @@ public class FurrFaceController {
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
                       @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
-        if (username.equals( users.findOneByUsername(username).username)){
+/*        if (username.equals( users.findOneByUsername(username).username)){
             throw new Exception("User already exists. please select new username");
-        }
+        }*/
             User user = new User();
             user.username = username;
             user.password = PasswordHash.createHash(password);
             //user.fileName = imageURL;
 
-            File photoFile = File.createTempFile("imageURL", photo.getOriginalFilename(), new File("public"));
+            File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
             FileOutputStream fos = new FileOutputStream(photoFile);
-            fos.write(photo.getBytes());
+            fos.write(imageURL.getBytes());
 
-            user.fileName = photo.getName();
-
+            user.imageURL = photoFile.getName();
             user.petName = petName;
             user.petType = petType;
             user.petAge = petAge;
@@ -173,7 +173,7 @@ public class FurrFaceController {
             throw new Exception("Not logged in.");
         }
         User user = users.findOneByUsername(username);
-        user.fileName = imageURL;
+        user.imageURL = imageURL;
         user.petName = petName;
         user.petType = petType;
         user.petAge = petAge;
