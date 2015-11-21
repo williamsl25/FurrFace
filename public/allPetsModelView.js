@@ -9,6 +9,7 @@ module.exports = Backbone.View.extend({
   tagName: 'article',
   className: 'pet',
   template: _.template(tmpl.otherProfile),
+  urlRoot: '/users',
   events: {
     'click .notesubmit': 'comment',
   },
