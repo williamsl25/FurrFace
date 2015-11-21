@@ -12925,7 +12925,7 @@ return jQuery;
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/currentUser',
+  urlRoot: '/users',
   initialize: function () {}
 });
 
