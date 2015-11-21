@@ -1,6 +1,8 @@
 package com.theironyard.controllers;
 
+import com.theironyard.entities.Comments;
 import com.theironyard.entities.User;
+import com.theironyard.services.CommentRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +30,8 @@ import java.util.List;
 public class FurrFaceController {
     @Autowired
     UserRepository users;
+    @Autowired
+    CommentRepository comments;
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -39,19 +43,16 @@ public class FurrFaceController {
             terry.petRating = 0;
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
-
-          //  terry.comments.add("TEST");
-
-
-
-
-
-
             terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
             terry.petAge = 8;
             terry.neighborhood = "West Ashley";
-
             users.save(terry);
+
+            Comments comment = new Comments();
+            comment.comment= "Test";
+            comment.user= terry;
+            comments.save(comment);
+
 //hello
             User doug = new User();
             doug.username = "Doug";
@@ -173,12 +174,11 @@ public class FurrFaceController {
         return user;
     }
 
-    @RequestMapping("/user")
+    @RequestMapping(path = "/user", method = RequestMethod.GET)
     public User user(HttpSession session){
         int id = (int) session.getAttribute("id");
         return users.findOneById(id);
     }
-
 
     @RequestMapping("/edit")
     public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
@@ -213,7 +213,7 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    @RequestMapping(path = "/users", method= RequestMethod.POST)
+    @RequestMapping(path = "/comments", method= RequestMethod.PUT)
     public void addComment (HttpSession session,
                             String thoughts,
                             String receiver) throws Exception {
@@ -222,12 +222,18 @@ public class FurrFaceController {
         if (username == null){
             throw new Exception("You're not logged in!!!!!");
         }
-     //   String test = (String) session.getAttribute("username");
-      //  User senderUser = users.findOneByUsername(username);
         User receiverUser = users.findOneById(id);
-       receiverUser.comments.set(receiverUser.comments.size()+1, thoughts);
-       // receiverUser.comments.add(thoughts);
+        Comments comment = new Comments();
+        comment.comment = thoughts;
+        comment.user = receiverUser;
         users.save(receiverUser);
+        comments.save(comment);
+
+    }
+
+    @RequestMapping(value = "/comments", method = RequestMethod.GET)
+    public List<Comments> allComments (){
+       return (List<Comments>) comments.findAll();
     }
 
 
