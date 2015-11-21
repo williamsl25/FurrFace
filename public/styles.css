@@ -8,14 +8,14 @@ header img {
 
 header {
   max-height: 400px;
-  background-color: black;
+  background-color: #99ccff;
   margin: 0 auto;
   padding: 0;
   color: white; }
 
 footer {
-  height: 30px;
-  background-color: black;
+  max-height: 200px;
+  background-color: #99ccff;
   margin: 0 auto;
   padding: 0; }
 
@@ -25,13 +25,22 @@ h1 {
   padding: 0;
   margin: 0 auto; }
 
-aside {
-  background-color: yellow;
+h5 {
+  color: white;
+  font-size: 18px;
+  text-align: center;
+  padding: 10px; }
+
+.aside {
+  background-color: #e5f2ff;
   display: inline-block;
-  width: 30%;
+  width: 20%;
   height: 500px;
   padding: 0 0 0 0;
-  vertical-align: top; }
+  vertical-align: top;
+  padding-left: 30px;
+  margin-left: 1px;
+  text-decoration: none; }
 
 .petProfile {
   margin: 0 auto; }
@@ -39,10 +48,11 @@ aside {
 .petView {
   display: inline-block;
   width: 65%;
-  background-color: orange;
+  background-color: #e5f2ff;
   height: 100%;
   margin: 0 auto;
-  padding-left: 30px; }
+  padding-left: 30px;
+  margin-left: 95px; }
 
 .form-control {
   width: 650px; }
@@ -56,16 +66,41 @@ form {
   padding-left: 55px;
   padding-top: 30px; }
 
-img {
-  height: 210px;
-  width: 210px;
-  overflow: hidden; }
+.dogPic {
+  margin: 0 auto;
+  padding: 0;
+  text-align: center; }
+
+.logginPic {
+  max-height: 400px;
+  margin: 0; }
 
 article {
   display: inline-block;
   padding: 5px;
-  border: 5px solid black;
+  border: 5px solid white;
   width: 360px;
-  height: 360px;
   overflow: hidden;
   margin: 10px; }
+  article img {
+    max-height: 210px;
+    width: 210px;
+    overflow: hidden; }
+
+li {
+  list-style: none;
+  margin: 0 auto;
+  text-decoration: none; }
+
+a {
+  list-style: none;
+  margin: 0 auto;
+  text-decoration: none; }
+
+nav {
+  margin: 0 auto;
+  text-decoration: none; }
+
+hover:li {
+  color: white;
+  font-weight: bold; }

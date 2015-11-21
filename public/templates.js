@@ -38,7 +38,9 @@ module.exports = {
   ].join(""),
 
 loginform: [
-
+  '<div class="dogPic">',
+  '<img class= "logginPic" src="http://fullyfeline.com/wp-content/uploads/2013/03/cats-and-dogs-group.jpg">',
+  '</div>',
   '<form class= "loginForm" action="login" enctype="multipart/form-data" method="post">',
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
@@ -60,9 +62,11 @@ aside:[
 ].join(""),
   header: [
   '<h1>Furr Face</h1>'
+
   ].join(""),
   footer: [
-    '<h1>Footer</h1>',
+    '<h5>FurrFace | Facebook For Your Pet</h5>'
+
   ].join(""),
 
 };

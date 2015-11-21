@@ -8,7 +8,7 @@ var tmpl = require('./templates');
 module.exports = Backbone.View.extend({
   template: _.template(tmpl.aside),
   initialize: function(){
-
+      $('aside').addClass('aside');
   },
   render: function(){
     var markup = this.template({});
