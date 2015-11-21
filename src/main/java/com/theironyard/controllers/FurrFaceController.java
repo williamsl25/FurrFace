@@ -204,11 +204,12 @@ public class FurrFaceController {
                             String comment,
                             String receiver) throws Exception {
         String username = (String) session.getAttribute("username");
+        int id = (int) session.getAttribute("id");
         if (username == null){
             throw new Exception("You're not logged in!!!!!");
         }
         User senderUser = users.findOneByUsername(username);
-        User receiverUser = users.findOneByUsername(receiver);
+        User receiverUser = users.findOneById(id);
         receiverUser.comments.add(comment);
     }
 
