@@ -12929,9 +12929,13 @@ module.exports = Backbone.Router.extend({
     'petslikeme': 'petLikeMe',
     'neighbors': 'Neighborhood',
     'top': 'topFuzzie',
-    'newUser': 'newUser'
+    'newUser': 'newUser',
+    '': 'login'
   },
   initialize: function (options) {
+    new LayOutView('login');
+  },
+  login: function(){
     new LayOutView('login');
   },
   newUser: function(){
