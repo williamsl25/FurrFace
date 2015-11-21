@@ -37,8 +37,8 @@ loginform: [
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="text" name="password" class="form-control" id="password" placeholder="Password"><br> ',
     '<button type="submit" class="btn btn-default">Submit</button>',
-    '</form>'
-
+    '</form>',
+    '<a href="#newUser">Create New Login</a>'
 ].join(""),
 
 aside:[
@@ -51,6 +51,12 @@ aside:[
       '<li><a href="#homePage">Top Fuzzies</a></li>',
     '</ul>',
   '</nav>'
-].join("")
+].join(""),
+  header: [
+  '<h1>Furr Face</h1>'
+  ].join(""),
+  footer: [
+    '<h1>Footer</h1>',
+  ].join(""),
 
 };

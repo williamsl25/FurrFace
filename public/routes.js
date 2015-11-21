@@ -4,6 +4,8 @@ var _ = require('underscore');
 var LayOutView = require('./layoutView');
 var PetCollectionView = require('./collectionView');
 var AllPetsCollection = require('./allPetsCollection');
+var HomePageView = require('./homePageView');
+var NewUserView = require('./newUserView');
 
 module.exports = Backbone.Router.extend({
   routes: {
@@ -12,14 +14,19 @@ module.exports = Backbone.Router.extend({
     'petslikeme': 'petLikeMe',
     'neighbors': 'Neighborhood',
     'top': 'topFuzzie',
+    'newUser': 'newUser'
   },
   initialize: function (options) {
-    new LayOutView();
+    new LayOutView('login');
+  },
+  newUser: function(){
+    new LayOutView('newuser');
   },
   homePage: function () {
     var pets = new AllPetsCollection();
     pets.fetch().then(function () {
       new PetCollectionView({collection: pets });
+      new HomePageView();
   });
   },
   editPet: function () {
