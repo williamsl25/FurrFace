@@ -171,17 +171,13 @@ var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var tmpl = require('./templates');
-var HeaderView = require('./headerView');
-var FooterView = require('./footerView');
+
 
 module.exports = Backbone.View.extend({
   template: _.template(tmpl.loginform),
-
   initialize: function(){
 
-    },
-
-
+  },
   render: function(){
     var markup = this.template({});
     this.$el.html(markup);
@@ -189,7 +185,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./footerView":4,"./headerView":5,"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
+},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
 var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
