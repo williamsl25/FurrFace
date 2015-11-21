@@ -4,6 +4,12 @@ module.exports = {
     '<h4><%= petAge %></h4>',
     '<p><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
+    '<div class="notes">',
+    '<h4>Comments:</h4>',
+    '<form class="noteForm" action="">',
+    '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
+    '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
+    '</form>'
 
   ].join(""),
 
@@ -32,7 +38,9 @@ module.exports = {
   ].join(""),
 
 loginform: [
-
+  '<div class="dogPic">',
+  '<img class= "logginPic" src="http://fullyfeline.com/wp-content/uploads/2013/03/cats-and-dogs-group.jpg">',
+  '</div>',
   '<form class= "loginForm" action="login" enctype="multipart/form-data" method="post">',
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
@@ -54,9 +62,11 @@ aside:[
 ].join(""),
   header: [
   '<h1>Furr Face</h1>'
+
   ].join(""),
   footer: [
-    '<h1>Footer</h1>',
+    '<h5>FurrFace | Facebook For Your Pet</h5>'
+
   ].join(""),
 
 };
