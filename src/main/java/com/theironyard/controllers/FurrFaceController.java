@@ -105,7 +105,7 @@ public class FurrFaceController {
                       @RequestParam(defaultValue = "1") int petAge,
                       @RequestParam(defaultValue = "0")  int petRating,
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
-                      @RequestParam(defaultValue = "westPhilly") String neighborhood) throws Exception {
+                      @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
             User user = new User();
             user.username = username;
@@ -114,7 +114,7 @@ public class FurrFaceController {
             user.petName = petName;
             user.petType = petType;
             user.petAge = petAge;
-            user.neighborhood = neighborhood;
+            user.neighborhood = selectNeighborhood;
             user.aboutMe = aboutMe;
             user.petRating = petRating;
             users.save(user);
