@@ -222,11 +222,11 @@ public class FurrFaceController {
         if (username == null){
             throw new Exception("You're not logged in!!!!!");
         }
-        String test = (String) session.getAttribute("username");
-        User senderUser = users.findOneByUsername(username);
+     //   String test = (String) session.getAttribute("username");
+      //  User senderUser = users.findOneByUsername(username);
         User receiverUser = users.findOneById(id);
-       // receiverUser.comments.set(receiverUser.comments.size()+1, thoughts);
-        receiverUser.comments.add(thoughts);
+       receiverUser.comments.set(receiverUser.comments.size()+1, thoughts);
+       // receiverUser.comments.add(thoughts);
         users.save(receiverUser);
     }
 
