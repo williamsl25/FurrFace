@@ -40,7 +40,7 @@ public class FurrFaceController {
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
 
-         //   terry.comments.add(1, "this is a test to make sure the array works");
+          // terry.comments.add( "this is a test to make sure the array works");
 
 
             terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
