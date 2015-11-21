@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 /**
  * Created by DrScott on 11/19/15.
@@ -22,7 +23,7 @@ public class User {
     public String password;
 
     @Column(nullable = false)
-    public String imageURL;
+    public String fileName;
 
     @Column(nullable = false)
     public String petName;
@@ -41,4 +42,13 @@ public class User {
 
     @Column(nullable = false)
     public int petRating;
+
+    public String getFileName() {
+        return fileName;
+    }
+/*@Column(nullable = true)
+    public List<String> comments;*/
+
+
+
 }

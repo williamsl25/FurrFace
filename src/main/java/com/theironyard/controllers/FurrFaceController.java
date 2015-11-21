@@ -4,16 +4,16 @@ import com.theironyard.entities.User;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import java.io.File;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.security.NoSuchAlgorithmException;
 import java.security.spec.InvalidKeySpecException;
@@ -30,7 +30,7 @@ public class FurrFaceController {
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        if (users.count() == 0){
+       /* if (users.count() == 0){
             User terry = new User();
             terry.username = "Terry";
             terry.password = PasswordHash.createHash("1234");
@@ -38,9 +38,12 @@ public class FurrFaceController {
             terry.petRating = 0;
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
-            terry.imageURL = "http://theartmad.com/wp-content/uploads/2015/03/Baby-Bunny-11.jpg";
+
+
+            terry.fileName = "http://theartmad.com/wp-content/uploads/2015/03/Baby-Bunny-11.jpg";
             terry.petAge = 8;
             terry.neighborhood = "West Ashley";
+
             users.save(terry);
 //hello
             User doug = new User();
@@ -50,7 +53,7 @@ public class FurrFaceController {
             doug.petRating = 10;
             doug.aboutMe = "Hi, I'm Doug and I have a dog named Rowan!";
             doug.petType = "dog";
-            doug.imageURL = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGYCWXg-pfA_B5_7EgYpEGaD6HRbluKULpI6ptT2q_2AgosgO_EZFz4Gb6";
+            doug.fileName = "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSGYCWXg-pfA_B5_7EgYpEGaD6HRbluKULpI6ptT2q_2AgosgO_EZFz4Gb6";
             doug.petAge = 8;
             doug.neighborhood = "James Island";
             users.save(doug);
@@ -62,7 +65,7 @@ public class FurrFaceController {
             kate.petRating = 10;
             kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
             kate.petType = "dog";
-            kate.imageURL = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
+            kate.fileName = "http://cp4s.laurietooker.com/wp-content/uploads/2011/04/shar-pei-Puppy.jpg";
             kate.petAge = 8;
             kate.neighborhood = "West Ashley";
             users.save(kate);
@@ -74,7 +77,7 @@ public class FurrFaceController {
             lindsay.petRating = 10;
             lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
             lindsay.petType = "cat";
-            lindsay.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
+            lindsay.fileName = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
             lindsay.petAge = 8;
             lindsay.neighborhood = "South of Broad";
             users.save(lindsay);
@@ -86,11 +89,11 @@ public class FurrFaceController {
             bryan.petType = "cat";
             bryan.petRating = 8;
             bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
-            bryan.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
+            bryan.fileName = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
             bryan.petAge = 5;
             bryan.neighborhood = "Mount Pleasant";
             users.save(bryan);
-        }
+        }*/
 
     }
 
@@ -99,7 +102,8 @@ public class FurrFaceController {
                       HttpSession session,
                       String username,
                       String password,
-                      @RequestParam(defaultValue = "http://bit.ly/1I09WCO")String imageURL,
+                      //@RequestParam(defaultValue = "http://bit.ly/1I09WCO")String imageURL,
+                        MultipartFile photo,
                       String petName,
                       @RequestParam(defaultValue = "unknown") String petType,
                       @RequestParam(defaultValue = "1") int petAge,
@@ -107,10 +111,20 @@ public class FurrFaceController {
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
                       @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
+        if (username.equals( users.findOneByUsername(username).username)){
+            throw new Exception("User already exists. please select new username");
+        }
             User user = new User();
             user.username = username;
             user.password = PasswordHash.createHash(password);
-            user.imageURL = imageURL;
+            //user.fileName = imageURL;
+
+            File photoFile = File.createTempFile("imageURL", photo.getOriginalFilename(), new File("public"));
+            FileOutputStream fos = new FileOutputStream(photoFile);
+            fos.write(photo.getBytes());
+
+            user.fileName = photo.getName();
+
             user.petName = petName;
             user.petType = petType;
             user.petAge = petAge;
@@ -159,7 +173,7 @@ public class FurrFaceController {
             throw new Exception("Not logged in.");
         }
         User user = users.findOneByUsername(username);
-        user.imageURL = imageURL;
+        user.fileName = imageURL;
         user.petName = petName;
         user.petType = petType;
         user.petAge = petAge;
