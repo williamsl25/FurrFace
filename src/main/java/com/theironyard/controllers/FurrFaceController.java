@@ -30,7 +30,7 @@ public class FurrFaceController {
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
-        if (users.count() == 0){
+    /*    if (users.count() == 0){
             User terry = new User();
             terry.username = "Terry";
             terry.password = PasswordHash.createHash("1234");
@@ -94,7 +94,7 @@ public class FurrFaceController {
             bryan.petAge = 5;
             bryan.neighborhood = "Mount Pleasant";
             users.save(bryan);
-        }
+        }*/
 
     }
 
@@ -112,9 +112,9 @@ public class FurrFaceController {
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
                       @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
-/*        if (username.equals( users.findOneByUsername(username).username)){
+        if (username.equals( users.findOneByUsername(username).username)){
             throw new Exception("User already exists. please select new username");
-        }*/
+        }
             User user = new User();
             user.username = username;
             user.password = PasswordHash.createHash(password);
@@ -199,14 +199,18 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    /*@RequestMapping("/randomUser")
-    public User randomUser(){
-        return users.findRandomUser();
-    }*/
-   /* @RequestMapping("/ratings")
-    public List<User> ratedUsers(){
-        return users.findAllOrderByPetRatingAsc();
-    }*/
+    @RequestMapping("/comments")
+    public void addComment (HttpSession session,
+                            String comment,
+                            String receiver) throws Exception {
+        String username = (String) session.getAttribute("username");
+        if (username == null){
+            throw new Exception("You're not logged in!!!!!");
+        }
+        User senderUser = users.findOneByUsername(username);
+        User receiverUser = users.findOneByUsername(receiver);
+        receiverUser.comments.add(comment);
+    }
 
 
 }

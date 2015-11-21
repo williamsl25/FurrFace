@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -43,11 +44,12 @@ public class User {
     @Column(nullable = false)
     public int petRating;
 
+    public ArrayList<String> comments;
+
     public String getFileName() {
         return imageURL;
     }
-/*@Column(nullable = true)
-    public List<String> comments;*/
+
 
 
 
