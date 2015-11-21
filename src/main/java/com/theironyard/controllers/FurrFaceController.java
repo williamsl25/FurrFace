@@ -40,7 +40,7 @@ public class FurrFaceController {
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
 
-          // terry.comments.add( "this is a test to make sure the array works");
+
 
 
             terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
@@ -168,6 +168,7 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
         return user;
     }
+    
 
     @RequestMapping("/edit")
     public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
@@ -214,7 +215,7 @@ public class FurrFaceController {
         String test = (String) session.getAttribute("username");
         User senderUser = users.findOneByUsername(username);
         User receiverUser = users.findOneById(id);
-        receiverUser.comments.add(thoughts);
+        receiverUser.comments.set(receiverUser.comments.size()+1, thoughts);
         users.save(receiverUser);
     }
 
