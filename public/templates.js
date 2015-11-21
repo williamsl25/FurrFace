@@ -12,7 +12,7 @@ module.exports = {
         '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
         '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
         '<h3>Now is the time to introduce your FurrFace!</h3>',
-        '<input type="text" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
+        '<input type="file" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
         '<input type="text" name="petName" class="form-control" id="petName" placeholder="What is your pets name?">',
         '<input type="text" name="petType" class="form-control" id="petType" placeholder="What type of pet do you have?">',
         '<input type="number" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?">',

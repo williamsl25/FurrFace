@@ -5,6 +5,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import java.util.List;
 
 /**
  * Created by DrScott on 11/19/15.
@@ -41,4 +42,13 @@ public class User {
 
     @Column(nullable = false)
     public int petRating;
+
+    public String getFileName() {
+        return imageURL;
+    }
+/*@Column(nullable = true)
+    public List<String> comments;*/
+
+
+
 }
