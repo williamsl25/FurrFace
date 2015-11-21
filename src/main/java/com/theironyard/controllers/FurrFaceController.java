@@ -58,7 +58,7 @@ public class FurrFaceController {
             User kate = new User();
             kate.username = "Kate";
             kate.password = PasswordHash.createHash("1234");
-            kate.petName = "Katedog";
+            kate.petName = "Balto";
             kate.petRating = 10;
             kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
             kate.petType = "dog";
@@ -70,19 +70,19 @@ public class FurrFaceController {
             User lindsay = new User();
             lindsay.username = "Lindsay";
             lindsay.password = PasswordHash.createHash("1234");
-            lindsay.petName = "Lindsay cat";
+            lindsay.petName = "Mr. Whiskers";
             lindsay.petRating = 10;
             lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
             lindsay.petType = "cat";
             lindsay.imageURL = "http://welovecatsandkittens.com/wp-content/uploads/2013/10/fluffy-kitten-ace.jpg";
             lindsay.petAge = 8;
             lindsay.neighborhood = "Charleston";
-            users.save(lindsay); //hi
+            users.save(lindsay);
 
             User bryan = new User();
             bryan.username = "Bryan";
             bryan.password = PasswordHash.createHash("1234");
-            bryan.petName = "Bryan's cat";
+            bryan.petName = "Callie";
             bryan.petType = "cat";
             bryan.petRating = 8;
             bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
@@ -118,18 +118,16 @@ public class FurrFaceController {
             user.aboutMe = aboutMe;
             user.petRating = petRating;
             users.save(user);
-
-       // System.out.println("");
          session.setAttribute("username", username);
          response.sendRedirect("/#homePage");
     }
+
     @RequestMapping("/login")
     public void login(HttpSession session, HttpServletResponse response, String password, String username) throws Exception {
         session.setAttribute("username", username);
         User user = users.findOneByUsername(username);
         if (!PasswordHash.validatePassword(password, user.password)) {
-                throw new Exception("Wrong password");
-               // response.sendRedirect("/");
+                response.sendRedirect("/#newUser");
             }
         response.sendRedirect("/#homePage");
         }
