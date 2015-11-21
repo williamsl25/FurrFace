@@ -21,7 +21,7 @@ var tmpl = require('./templates');
 module.exports = Backbone.View.extend({
   template: _.template(tmpl.aside),
   initialize: function(){
-
+      $('aside').addClass('aside');
   },
   render: function(){
     var markup = this.template({});
@@ -140,7 +140,8 @@ Backbone.$ = $;
 var _= require('underscore');
 var LogInView = require('./logInView');
 var NewUserView = require('./newUserView');
-
+var HeaderView = require('./headerView');
+var FooterView = require('./footerView');
 
 module.exports = Backbone.View.extend({
   el: '.petProfile',
@@ -148,8 +149,11 @@ module.exports = Backbone.View.extend({
     var self= this;
     if(loc === 'login'){
       var loginHTML = new LogInView();
-
-      self.$el.find('.petView').html(loginHTML.render().el);
+      var headerHTML = new HeaderView();
+      var footerHTML = new FooterView();
+        self.$el.find('header').html(headerHTML.render().el);
+        self.$el.find('footer').html(footerHTML.render().el);
+        self.$el.find('.petView').html(loginHTML.render().el);
     }
     else if(loc === 'newuser'){
       var newUserHTML = new NewUserView();
@@ -161,19 +165,23 @@ module.exports = Backbone.View.extend({
 
   });
 
-},{"./logInView":8,"./newUserView":11,"backbone":12,"jquery":13,"underscore":14}],8:[function(require,module,exports){
+},{"./footerView":4,"./headerView":5,"./logInView":8,"./newUserView":11,"backbone":12,"jquery":13,"underscore":14}],8:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var tmpl = require('./templates');
-
+var HeaderView = require('./headerView');
+var FooterView = require('./footerView');
 
 module.exports = Backbone.View.extend({
   template: _.template(tmpl.loginform),
+
   initialize: function(){
 
-  },
+    },
+
+
   render: function(){
     var markup = this.template({});
     this.$el.html(markup);
@@ -181,7 +189,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
+},{"./footerView":4,"./headerView":5,"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
 var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
@@ -13010,7 +13018,9 @@ module.exports = {
   ].join(""),
 
 loginform: [
-
+  '<div class="dogPic">',
+  '<img class= "logginPic" src="http://fullyfeline.com/wp-content/uploads/2013/03/cats-and-dogs-group.jpg">',
+  '</div>',
   '<form class= "loginForm" action="login" enctype="multipart/form-data" method="post">',
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
@@ -13032,9 +13042,11 @@ aside:[
 ].join(""),
   header: [
   '<h1>Furr Face</h1>'
+
   ].join(""),
   footer: [
-    '<h1>Footer</h1>',
+    '<h5>FurrFace | Facebook For Your Pet</h5>'
+
   ].join(""),
 
 };
