@@ -13011,8 +13011,8 @@ loginform: [
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="text" name="password" class="form-control" id="password" placeholder="Password"><br> ',
     '<button type="submit" class="btn btn-default">Submit</button>',
-    '</form>'
-
+    '</form>',
+    '<a href="#newUser">Create New Login</a>'
 ].join(""),
 
 aside:[
