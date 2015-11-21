@@ -9,6 +9,7 @@ module.exports = Backbone.View.extend({
   tagName: 'article',
   className: 'pet',
   template: _.template(tmpl.otherProfile),
+  urlRoot: '/users',
   events: {
     'click .notesubmit': 'comment',
   },
@@ -22,7 +23,7 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
     var comment = $('input[name="thoughts"]').val();
     var commentedOn = this.model;
-    commentedOn.set({comments: comment });
+    commentedOn.set({comments: comment});
     commentedOn.save();
     this.$('input').val("");
   },

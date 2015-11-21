@@ -171,13 +171,17 @@ var $ = require('jquery');
 Backbone.$ = $;
 var _ = require('underscore');
 var tmpl = require('./templates');
-
+var HeaderView = require('./headerView');
+var FooterView = require('./footerView');
 
 module.exports = Backbone.View.extend({
   template: _.template(tmpl.loginform),
+
   initialize: function(){
 
-  },
+    },
+
+
   render: function(){
     var markup = this.template({});
     this.$el.html(markup);
@@ -185,7 +189,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
+},{"./footerView":4,"./headerView":5,"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
 var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
@@ -217,8 +221,17 @@ module.exports = Backbone.View.extend({
   className: 'pet',
   template: _.template(tmpl.pet),
   initialize: function(){},
-
-
+  events: {
+    'click .notesubmit': 'comment',
+  },
+  comment: function(event){
+    event.preventDefault();
+    var comment = $('input[name="thoughts"]').val();
+    var commentedOn = this.model;
+    commentedOn.set({comments: comment});
+    commentedOn.save();
+    this.$('input').val("");
+  },
   render: function(){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -12988,7 +13001,7 @@ module.exports = {
     '<p><%= aboutMe %></p>',
     '<div class="notes">',
     '<h4>Comments:</h4>',
-    '<form class="noteForm" action="">',
+    '<form class="noteForm">',
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>'
