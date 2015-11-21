@@ -44,7 +44,7 @@ public class User {
     @Column(nullable = false)
     public int petRating;
 
-    public ArrayList<String> thoughts;
+    public ArrayList<String> comments;
 
     public String getFileName() {
         return imageURL;

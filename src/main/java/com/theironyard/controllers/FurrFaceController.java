@@ -40,6 +40,8 @@ public class FurrFaceController {
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
 
+         //   terry.comments.add(1, "this is a test to make sure the array works");
+
 
             terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
             terry.petAge = 8;
@@ -155,7 +157,7 @@ public class FurrFaceController {
         response.sendRedirect("/");
         System.out.println("goodbye!");
     }
-    @RequestMapping("/users")
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<User> users(){
         return (List<User>) users.findAll();
     }
@@ -200,18 +202,20 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    @RequestMapping(value = "/users", method= RequestMethod.POST)
+    @RequestMapping(path = "/users", method= RequestMethod.PUT)
     public void addComment (HttpSession session,
                             String thoughts,
                             String receiver) throws Exception {
         String username = (String) session.getAttribute("username");
-        int id = (int) session.getAttribute("id");
+       int id = (int) session.getAttribute("id");
         if (username == null){
             throw new Exception("You're not logged in!!!!!");
         }
+        String test = (String) session.getAttribute("username");
         User senderUser = users.findOneByUsername(username);
         User receiverUser = users.findOneById(id);
-        receiverUser.thoughts.add(thoughts);
+        receiverUser.comments.add(thoughts);
+        users.save(receiverUser);
     }
 
 
