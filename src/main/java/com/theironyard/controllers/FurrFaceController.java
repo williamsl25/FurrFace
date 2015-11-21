@@ -5,6 +5,7 @@ import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -30,7 +31,7 @@ public class FurrFaceController {
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
-    /*    if (users.count() == 0){
+        if (users.count() == 0){
             User terry = new User();
             terry.username = "Terry";
             terry.password = PasswordHash.createHash("1234");
@@ -94,7 +95,7 @@ public class FurrFaceController {
             bryan.petAge = 5;
             bryan.neighborhood = "Mount Pleasant";
             users.save(bryan);
-        }*/
+        }
 
     }
 
@@ -112,9 +113,9 @@ public class FurrFaceController {
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
                       @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
-        if (username.equals( users.findOneByUsername(username).username)){
+/*        if (username.equals( users.findOneByUsername(username).username)){
             throw new Exception("User already exists. please select new username");
-        }
+        }*/
             User user = new User();
             user.username = username;
             user.password = PasswordHash.createHash(password);
@@ -199,9 +200,9 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    @RequestMapping("/comments")
+    @RequestMapping(value = "/users", method= RequestMethod.POST)
     public void addComment (HttpSession session,
-                            String comment,
+                            String thoughts,
                             String receiver) throws Exception {
         String username = (String) session.getAttribute("username");
         int id = (int) session.getAttribute("id");
@@ -210,7 +211,7 @@ public class FurrFaceController {
         }
         User senderUser = users.findOneByUsername(username);
         User receiverUser = users.findOneById(id);
-        receiverUser.comments.add(comment);
+        receiverUser.thoughts.add(thoughts);
     }
 
 
