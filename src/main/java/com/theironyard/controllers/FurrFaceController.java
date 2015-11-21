@@ -126,8 +126,10 @@ public class FurrFaceController {
     public void login(HttpSession session, HttpServletResponse response, String password, String username) throws Exception {
         session.setAttribute("username", username);
         User user = users.findOneByUsername(username);
-        if (!PasswordHash.validatePassword(password, user.password)) {
-                response.sendRedirect("/#newUser");
+        if (user==null){
+            response.sendRedirect("/#newUser");
+        }else if  (!PasswordHash.validatePassword(password, user.password)) {
+                response.sendRedirect("/");
             }
         response.sendRedirect("/#homePage");
         }
