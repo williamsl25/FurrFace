@@ -40,6 +40,10 @@ public class FurrFaceController {
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
 
+          //  terry.comments.add("TEST");
+
+
+
 
 
 
@@ -168,7 +172,13 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
         return user;
     }
-    
+
+    @RequestMapping("/user")
+    public User user(HttpSession session){
+        int id = (int) session.getAttribute("id");
+        return users.findOneById(id);
+    }
+
 
     @RequestMapping("/edit")
     public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
@@ -203,7 +213,7 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    @RequestMapping(path = "/users", method= RequestMethod.PUT)
+    @RequestMapping(path = "/users", method= RequestMethod.POST)
     public void addComment (HttpSession session,
                             String thoughts,
                             String receiver) throws Exception {
@@ -215,7 +225,8 @@ public class FurrFaceController {
         String test = (String) session.getAttribute("username");
         User senderUser = users.findOneByUsername(username);
         User receiverUser = users.findOneById(id);
-        receiverUser.comments.set(receiverUser.comments.size()+1, thoughts);
+       // receiverUser.comments.set(receiverUser.comments.size()+1, thoughts);
+        receiverUser.comments.add(thoughts);
         users.save(receiverUser);
     }
 

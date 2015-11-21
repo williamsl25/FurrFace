@@ -44,6 +44,7 @@ public class User {
     @Column(nullable = false)
     public int petRating;
 
+//    @Column(nullable = false)
     public ArrayList<String> comments;
 
     public String getFileName() {
