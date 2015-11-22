@@ -15,7 +15,8 @@ public interface UserRepository extends CrudRepository<User, Integer> {
        List<User> findByPetType(String petType);
        List<User> findAllByPetAge(int petAge);
        User findOneById(int id);
-   //    List<User> findByLikesOrderByAsc();
+     //  List<User> findAllOrderByLikesAsc();
+
 
 
       // List<User> findAllOrderByPetRatingAsc();

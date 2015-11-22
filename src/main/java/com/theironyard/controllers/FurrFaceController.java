@@ -197,8 +197,8 @@ public class FurrFaceController {
         return users.findOneById(id);
     }
 
-    @RequestMapping(path = "/user", method = RequestMethod.PUT)
-    public void test(HttpSession session, @RequestBody User user){
+    @RequestMapping(path = "/user/{id}", method = RequestMethod.PUT)
+    public void test(HttpSession session, @RequestBody User user, @PathVariable int id){
         users.save(user);
     }
 
@@ -248,6 +248,12 @@ public class FurrFaceController {
        return (List<Comment>) comments.findAll();
     }
 
+
+    @RequestMapping("/likes")
+    public List<User> likes(){
+       // return (List<User>) users.findAllOrderByLikesAsc();
+        return (List<User>) users.findAll();
+    }
 
 
 
