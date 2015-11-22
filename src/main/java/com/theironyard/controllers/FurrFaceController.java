@@ -249,11 +249,7 @@ public class FurrFaceController {
     }
 
 
-    @RequestMapping("/likes")
-    public List<User> likes(){
-       // return (List<User>) users.findAllOrderByLikesAsc();
-        return (List<User>) users.findAll();
-    }
+
 
 
 

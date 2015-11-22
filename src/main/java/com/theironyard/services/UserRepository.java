@@ -17,10 +17,13 @@ public interface UserRepository extends CrudRepository<User, Integer> {
        User findOneById(int id);
      //  List<User> findAllOrderByLikesAsc();
 
+      // List<User> orderByLikesAsc();
+
+
 
 
       // List<User> findAllOrderByPetRatingAsc();
 
-       //@Query("SELECT u FROM users u ORDER BY RAND()")
-       //User findRandomUser();
+    //   @Query("SELECT u FROM users u ORDER BY Likes()")
+      // List<User> orderByLikes();
 }
