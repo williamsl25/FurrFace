@@ -43,11 +43,11 @@ public class FurrFaceController {
             terry.password = PasswordHash.createHash("1234");
             terry.petName = "Maggie";
             terry.likes = 5;
-            terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
-            terry.petType = "Bunny";
-            terry.imageURL = "Baby-Bunny-11.jpg";
-            terry.petAge = 8;
-            terry.neighborhood = "West Ashley";
+            terry.aboutMe = "Likes chasing Abby the cat!";
+            terry.petType = "Dog";
+            terry.imageURL = "IMG_6894 (1).jpg";
+            terry.petAge = 3;
+            terry.neighborhood = "James Island";
             users.save(terry);
 
             Comment comment = new Comment();
@@ -57,22 +57,16 @@ public class FurrFaceController {
             comments.save(comment);
 
 
-
-
-
-
-
-
 //hello
            User doug = new User();
             doug.username = "Doug";
             doug.password = PasswordHash.createHash("1234");
-            doug.petName = "Rowan";
+            doug.petName = "Rum(plemintz)";
             doug.likes = 10;
-            doug.aboutMe = "Rowan's a rescue mutt who enjoys hopping over a 5 foot fence and going on walkabouts";
-            doug.petType = "Dog";
-            doug.imageURL = "IMG_0622.JPG";
-            doug.petAge = 8;
+            doug.aboutMe = "I wake Doug up 5 minute before his alarm goes off.";
+            doug.petType = "Cat";
+            doug.imageURL = "Slack for iOS Upload-1.jpg";
+            doug.petAge = 11;
             doug.neighborhood = "Mount Pleasant";
             users.save(doug);
 
@@ -86,13 +80,13 @@ public class FurrFaceController {
             User kate = new User();
             kate.username = "Kate";
             kate.password = PasswordHash.createHash("1234");
-            kate.petName = "Balto";
+            kate.petName = "Amir";
             kate.likes = 2;
-            kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
+            kate.aboutMe = "I love watching Animal Planet!";
             kate.petType = "Dog";
-            kate.imageURL = "shar-pei-Puppy.jpg";
-            kate.petAge = 4;
-            kate.neighborhood = "West Ashley";
+            kate.imageURL = "Slack for iOS Upload.jpg";
+            kate.petAge = 5;
+            kate.neighborhood = "Wagner Terrace";
             users.save(kate);
 
             User lindsay = new User();
@@ -100,24 +94,24 @@ public class FurrFaceController {
             lindsay.password = PasswordHash.createHash("1234");
             lindsay.petName = "Mr. Whiskers";
             lindsay.likes = 3;
-            lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
-            lindsay.petType = "Cat";
-            lindsay.imageURL = "fluffy-kitten-ace.jpg";
-            lindsay.petAge = 3;
-            lindsay.neighborhood = "South of Broad";
+            lindsay.aboutMe = "She loves to play with the chuckit, and swim.";
+            lindsay.petType = "Dog";
+            lindsay.imageURL = "charlie.jpg";
+            lindsay.petAge = 5;
+            lindsay.neighborhood = "Isle of Palms";
             users.save(lindsay);
 
             User bryan = new User();
             bryan.username = "Bryan";
             bryan.password = PasswordHash.createHash("1234");
-            bryan.petName = "Callie";
+            bryan.petName = "Baby Kitten";
             bryan.petType = "Cat";
             bryan.likes = 1;
-            bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
-            bryan.imageURL = "fluffy-kitten-ace.jpg" ;
+            bryan.aboutMe = "Loves to stalk around the house.";
+            bryan.imageURL = "IMG_6273.JPG" ;
 
-            bryan.petAge = 5;
-            bryan.neighborhood = "Mount Pleasant";
+            bryan.petAge = 2;
+            bryan.neighborhood = "Summerville";
             users.save(bryan);
         }
 
@@ -304,6 +298,11 @@ public class FurrFaceController {
     @RequestMapping(value = "/comments", method = RequestMethod.GET)
     public List<Comment> allComments (){
        return (List<Comment>) comments.findAll();
+    }
+    @RequestMapping("/test")
+    public List<User> test() {
+        return (List<User>) users.findAllGroupByLikesOrder();
+
     }
 
 
