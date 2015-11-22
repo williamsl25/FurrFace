@@ -70,7 +70,7 @@ aside:[
   '<nav>',
     '<ul>',
       '<li><a href="#homePage">Home</a></li>',
-      '<li><a href="#homePage">Edit My Pet Page</a></li>',
+      '<li><a href="#myPet">Edit My Pet Page</a></li>',
       '<li><a href="#homePage">See Pets Like Me</a></li>',
       '<li><a href="#homePage">See Pets in My Neighborhood</a></li>',
       '<li><a href="#homePage">Top Fuzzies</a></li>',
