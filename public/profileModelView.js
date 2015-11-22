@@ -6,8 +6,8 @@ Backbone.$ = $;
 var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
-  tagName: 'article',
-  className: 'pet',
+  tagName: 'section',
+  className: '',
   template: _.template(tmpl.ownProfile),// remember to make ownProfile in template
   initialize: function(){},
   render: function(){
