@@ -11,7 +11,8 @@ module.exports = {
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>',
     '<div class="likes">',
-    '<button class="likes">Like</button>',
+    '<img class="theLike likes" src="redheart.png" style="height:60px; width:60px;">',
+    '<h5><%= likes %></h5>',
     '</div>'
 
 
@@ -71,17 +72,17 @@ loginform: [
 aside:[
   '<nav>',
     '<ul>',
-      '<li><a href="#homePage">Home</a></li>',
-      '<li><a href="#myPet">Edit My Pet Page</a></li>',
-      '<li><a href="#petsLikeMe">See Pets Like Me</a></li>',
-      '<li><a href="#neighbors">See Pets in My Neighborhood</a></li>',
-      '<li><a href="#homePage">Top Fuzzies</a></li>',
+      '<button class="btn"><a href="#homePage">Home</a></button>',
+      '<button class="btn"><a href="#myPet">Edit My Pet Page</a></button>',
+      '<button class="btn"><a href="#petsLikeMe">See Pets Like Me</a></button>',
+      '<button class="btn"><a href="#neighbors">See Pets in My Neighborhood</a></button>',
+      '<button class="btn"><a href="#homePage">Top Fuzzies</a></button>',
     '</ul>',
   '</nav>'
 ].join(""),
   header: [
   '<h1>Furr Face</h1>',
-  '<form id="logout" action="logout" method="post">',
+  '<form id="logoutBtn" action="logout" method="post">',
   '<button class="logout btn hidden">Logout</button>',
   '</form>'
 
