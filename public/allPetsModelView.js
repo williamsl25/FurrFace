@@ -12,6 +12,7 @@ module.exports = Backbone.View.extend({
   urlRoot: '/users',
   events: {
     'click .notesubmit': 'comment',
+    'click .likes': 'like',
   },
   initialize: function(){},
   render: function(){
@@ -29,6 +30,10 @@ module.exports = Backbone.View.extend({
   },
   like: function(){
     // like other people's profiles and update likes
+    var likedOne = this.model
+      likedOne.set({likes: likedOne.get('likes')+1});
+      likedOne.save();
+      likedOne.render();
   },
   goTo: function(){
     // goTo single view

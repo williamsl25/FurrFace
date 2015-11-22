@@ -13,10 +13,8 @@ module.exports = {
     '<div class="likes">',
     '<button class="likes">Like</button>',
     '</div>'
-<<<<<<< HEAD
 
-=======
->>>>>>> cafda7e39620bd5f23f532eb2a9d02eb3c21e998
+
 
   ].join(""),
 
