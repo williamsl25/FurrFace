@@ -24,7 +24,7 @@ module.exports = Backbone.View.extend({
   },
   like: function(){
     // like other people's profiles and update likes
-    var likedOne = this.model
+    var likedOne = this.model;
       likedOne.set({likes: likedOne.get('likes')+1});
       likedOne.save();
       likedOne.render();
