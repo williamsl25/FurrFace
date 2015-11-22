@@ -6,6 +6,7 @@ var LogInView = require('./logInView');
 var NewUserView = require('./newUserView');
 var HeaderView = require('./headerView');
 var FooterView = require('./footerView');
+var AsideView = require('./asideView');
 
 module.exports = Backbone.View.extend({
   el: '.petProfile',
@@ -15,9 +16,11 @@ module.exports = Backbone.View.extend({
       var loginHTML = new LogInView();
       var headerHTML = new HeaderView();
       var footerHTML = new FooterView();
+      var asideHTML = new AsideView();
         self.$el.find('header').html(headerHTML.render().el);
         self.$el.find('footer').html(footerHTML.render().el);
         self.$el.find('.petView').html(loginHTML.render().el);
+        self.$el.find('aside').html(asideHTML.render().el);
 
     }
     else if(loc === 'newuser'){
