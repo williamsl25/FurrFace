@@ -34,6 +34,7 @@ module.exports = Backbone.View.extend({
       likedOne.set({likes: likedOne.get('likes')+1});
       likedOne.save();
       likedOne.render();
+
   },
   goTo: function(){
     // goTo single view
