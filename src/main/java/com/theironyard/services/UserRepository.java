@@ -1,6 +1,7 @@
 package com.theironyard.services;
 
 import com.theironyard.entities.User;
+import org.springframework.data.domain.Sort;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.CrudRepository;
 
@@ -13,17 +14,9 @@ public interface UserRepository extends CrudRepository<User, Integer> {
        User findOneByUsername(String username);
        List<User> findAllByNeighborhood(String neighborhood);
        List<User> findByPetType(String petType);
-       List<User> findAllByPetAge(int petAge);
+       List<User> findByPetAge(int petAge);
        User findOneById(int id);
-     //  List<User> findAllOrderByLikesAsc();
-
-      // List<User> orderByLikesAsc();
 
 
-
-
-      // List<User> findAllOrderByPetRatingAsc();
-
-    //   @Query("SELECT u FROM users u ORDER BY Likes()")
-      // List<User> orderByLikes();
+       List<User> findTop4ByOrderByLikesDesc();
 }

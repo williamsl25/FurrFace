@@ -130,6 +130,8 @@ public class FurrFaceController {
             user.password = PasswordHash.createHash(password);
             //user.fileName = imageURL;
 
+
+
             File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
             FileOutputStream fos = new FileOutputStream(photoFile);
             fos.write(imageURL.getBytes());
@@ -179,7 +181,7 @@ public class FurrFaceController {
         } if (neighborhood!=null){
             return (List<User>) users.findAllByNeighborhood(user.neighborhood);
         } if (petAge!=null){
-            return (List<User>) users.findAllByPetAge(user.petAge);
+            return (List<User>) users.findByPetAge(user.petAge);
         }else
         return (List<User>) users.findAll();
     }
@@ -250,7 +252,11 @@ public class FurrFaceController {
 
 
 
-
+@RequestMapping("/top")
+    public List<User> sortByLikes(){
+   return (List<User>) users.findTop4ByOrderByLikesDesc();
+    //return (List<User>) users.findAll();
+}
 
 
 
