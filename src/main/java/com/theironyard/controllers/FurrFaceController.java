@@ -6,10 +6,7 @@ import com.theironyard.services.CommentRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 import javax.annotation.PostConstruct;
@@ -30,8 +27,7 @@ import java.util.List;
 public class FurrFaceController {
     @Autowired
     UserRepository users;
-   /* @Autowired
-    CommentRepository comments; */
+
     @Autowired
     CommentRepository comments;
 
@@ -57,8 +53,8 @@ public class FurrFaceController {
             comments.save(comment);
 
 
-//hello
-           User doug = new User();
+
+            User doug = new User();
             doug.username = "Doug";
             doug.password = PasswordHash.createHash("1234");
             doug.petName = "Rum(plemintz)";
@@ -114,7 +110,6 @@ public class FurrFaceController {
             bryan.neighborhood = "Summerville";
             users.save(bryan);
         }
-
     }
 
     @RequestMapping("/addUser")
@@ -122,8 +117,7 @@ public class FurrFaceController {
                       HttpSession session,
                       String username,
                       String password,
-                      //@RequestParam(defaultValue = "http://bit.ly/1I09WCO")String imageURL,
-                        MultipartFile imageURL,
+                      MultipartFile imageURL,
                       String petName,
                       @RequestParam(defaultValue = "unknown") String selectPetType,
                       @RequestParam(defaultValue = "1") int petAge,
@@ -131,9 +125,6 @@ public class FurrFaceController {
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
                       @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
-/*        if (username.equals( users.findOneByUsername(username).username)){
-            throw new Exception("User already exists. please select new username");
-        }*/
             User user = new User();
             user.username = username;
             user.password = PasswordHash.createHash(password);
@@ -171,20 +162,17 @@ public class FurrFaceController {
     public void logout(HttpServletResponse response, HttpSession session) throws IOException {
         session.invalidate();
         response.sendRedirect("/");
-      //  System.out.println("goodbye!");
     }
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<User> users(HttpSession session,
                             String petType,
                             String neighborhood,
                             Integer petAge,
-                            String petRating){
+                            Integer id){
         String username = (String) session.getAttribute("username");
         User user = users.findOneByUsername(username);
 
-       if(petRating!=null){
-           user.likes += 1;
-       }
+
 
         if (petType!=null){
             return (List<User>) users.findByPetType(user.petType);
@@ -205,8 +193,13 @@ public class FurrFaceController {
 
     @RequestMapping(path = "/user", method = RequestMethod.GET)
     public User user(HttpSession session){
-        int id = (int) session.getAttribute("id");
+      int id = (int) session.getAttribute("id");
         return users.findOneById(id);
+    }
+
+    @RequestMapping(path = "/user", method = RequestMethod.PUT)
+    public void test(HttpSession session, @RequestBody User user){
+        users.save(user);
     }
 
     @RequestMapping("/editUser")
@@ -215,7 +208,7 @@ public class FurrFaceController {
                          MultipartFile imageURL,
                          String petName,
                          String selectPetType,
-                        Integer petAge,
+                         Integer petAge,
                          String selectNeighborhood,
                          String aboutMe) throws Exception {
         String username = (String) session.getAttribute("username");
@@ -245,65 +238,19 @@ public class FurrFaceController {
             fos.write(imageURL.getBytes());
             user.imageURL = photoFile.getName();
         }
-
         users.save(user);
         response.sendRedirect("/#myPet");
     }
 
-    @RequestMapping("/#homePage")
-    public List<User> searchPetType(String petType)
-    {
-        return users.findByPetType(petType);
-    }
-
-    @RequestMapping("/neighborhood")
-    public List<User> searchByNeighborhood (String neighborhood){
-        return users.findAllByNeighborhood(neighborhood);
-    }
-
-
-
-    @RequestMapping("/petAge")
-    public List<User> searchByPetAge (int petAge){
-        return users.findAllByPetAge(petAge);
-    }
-
-  /*  @RequestMapping(path = "/comments", method= RequestMethod.PUT)
-    public void addComment (HttpSession session,
-                            String thoughts,
-                            String receiver) throws Exception {
-        String username = (String) session.getAttribute("username");
-       int id = (int) session.getAttribute("id");
-        if (username == null){
-            throw new Exception("You're not logged in!!!!!");
-        }
-        User receiverUser = users.findOneById(id);
-        Comments comment = new Comments();
-        comment.comment = thoughts;
-        comment.user = receiverUser;
-        users.save(receiverUser);
-        comments.save(comment);
-    }
-   /* @RequestMapping("/userComments")
-    public List<Comments> userComments (HttpSession session){
-        String username = (String) session.getAttribute("username");
-        User user = users.findOneByUsername(username);
-        return comments.findByUser(user);
-    }
-    @RequestMapping("/randomComment")
-    private Comments randomComment (){
-        return comments.findRandom();
-    } */
 
     @RequestMapping(value = "/comments", method = RequestMethod.GET)
     public List<Comment> allComments (){
        return (List<Comment>) comments.findAll();
     }
-    @RequestMapping("/test")
-    public List<User> test() {
-        return (List<User>) users.findAllGroupByLikesOrder();
 
-    }
+
+
+
 
 
 }
