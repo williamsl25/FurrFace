@@ -1,10 +1,13 @@
 package com.theironyard.controllers;
 
+import com.theironyard.entities.Comment;
 import com.theironyard.entities.User;
+import com.theironyard.services.CommentRepository;
 import com.theironyard.services.UserRepository;
 import com.theironyard.utils.PasswordHash;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
@@ -27,6 +30,10 @@ import java.util.List;
 public class FurrFaceController {
     @Autowired
     UserRepository users;
+   /* @Autowired
+    CommentRepository comments; */
+    @Autowired
+    CommentRepository comments;
 
     @PostConstruct
     public void init() throws InvalidKeySpecException, NoSuchAlgorithmException {
@@ -38,25 +45,43 @@ public class FurrFaceController {
             terry.petRating = 0;
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
             terry.petType = "dog";
-
-
             terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
             terry.petAge = 8;
             terry.neighborhood = "West Ashley";
-
             users.save(terry);
+
+            Comment comment = new Comment();
+            comment.text = "THis is terry's test comment";
+            comment.user = terry;
+
+            comments.save(comment);
+
+
+
+
+
+
+
+
 //hello
-            User doug = new User();
+           User doug = new User();
             doug.username = "Doug";
             doug.password = PasswordHash.createHash("1234");
             doug.petName = "Rowan";
             doug.petRating = 10;
-            doug.aboutMe = "Hi, I'm Doug and I have a dog named Rowan!";
+            doug.aboutMe = "Rowan's a rescue mutt who enjoys hopping over a 5 foot fence and going on walkabouts";
             doug.petType = "dog";
-            doug.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
+            doug.imageURL = "IMG_0622.JPG";
             doug.petAge = 8;
-            doug.neighborhood = "James Island";
+            doug.neighborhood = "Mount Pleasant";
             users.save(doug);
+
+
+          /*  Comments dougComment = new Comments();
+            dougComment.comment = "Double test";
+            dougComment.user = doug;
+            comments.save(dougComment); */
+
 
             User kate = new User();
             kate.username = "Kate";
@@ -106,7 +131,7 @@ public class FurrFaceController {
                       //@RequestParam(defaultValue = "http://bit.ly/1I09WCO")String imageURL,
                         MultipartFile imageURL,
                       String petName,
-                      @RequestParam(defaultValue = "unknown") String petType,
+                      @RequestParam(defaultValue = "unknown") String selectPetType,
                       @RequestParam(defaultValue = "1") int petAge,
                       @RequestParam(defaultValue = "0")  int petRating,
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
@@ -126,7 +151,7 @@ public class FurrFaceController {
 
             user.imageURL = photoFile.getName();
             user.petName = petName;
-            user.petType = petType;
+            user.petType = selectPetType;
             user.petAge = petAge;
             user.neighborhood = selectNeighborhood;
             user.aboutMe = aboutMe;
@@ -152,10 +177,29 @@ public class FurrFaceController {
     public void logout(HttpServletResponse response, HttpSession session) throws IOException {
         session.invalidate();
         response.sendRedirect("/");
-        System.out.println("goodbye!");
+      //  System.out.println("goodbye!");
     }
-    @RequestMapping("/users")
-    public List<User> users(){
+    @RequestMapping(path = "/users", method = RequestMethod.GET)
+    public List<User> users(HttpSession session,
+                            String petType,
+                            String neighborhood,
+                            Integer petAge,
+                            String petRating){
+        String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+
+       if(petRating!=null){
+           user.petRating += 1;
+       }
+
+
+        if (petType!=null){
+            return (List<User>) users.findByPetType(user.petType);
+        } if (neighborhood!=null){
+            return (List<User>) users.findAllByNeighborhood(user.neighborhood);
+        } if (petAge!=null){
+            return (List<User>) users.findAllByPetAge(user.petAge);
+        }else
         return (List<User>) users.findAll();
     }
 
@@ -166,31 +210,52 @@ public class FurrFaceController {
         return user;
     }
 
-    @RequestMapping("/edit")
-    public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
+    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    public User user(HttpSession session){
+        int id = (int) session.getAttribute("id");
+        return users.findOneById(id);
+    }
+
+    @RequestMapping("/editUser")
+    public void editUser(HttpSession session,
+                         HttpServletResponse response,
+                         MultipartFile imageURL,
+                         String petName,
+                         String selectPetType,
+                         int petAge,
+                         @RequestParam(defaultValue = "unknown")String selectNeighborhood,
+                         String aboutMe,
+                         @RequestParam(defaultValue = "0")int petRating) throws Exception {
         String username = (String) session.getAttribute("username");
         if (session.getAttribute("username") == null) {
             throw new Exception("Not logged in.");
         }
         User user = users.findOneByUsername(username);
-        user.imageURL = imageURL;
         user.petName = petName;
-        user.petType = petType;
+        user.petType = selectPetType;
         user.petAge = petAge;
-        user.neighborhood = neighborhood;
+        user.neighborhood = selectNeighborhood;
         user.aboutMe = aboutMe;
-        user.petRating = petRating;
+
+
+        File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
+        FileOutputStream fos = new FileOutputStream(photoFile);
+        fos.write(imageURL.getBytes());
+        user.imageURL = photoFile.getName();
+
         users.save(user);
-        response.sendRedirect("/");
+        response.sendRedirect("/#myPet");
     }
 
-    @RequestMapping("/petType")
-    public List<User> searchPetType (String petType){
-        return users.findAllByPetType(petType);
+    @RequestMapping("/#homePage")
+    public List<User> searchPetType(String petType)
+    {
+        return users.findByPetType(petType);
     }
+
     @RequestMapping("/neighborhood")
     public List<User> searchByNeighborhood (String neighborhood){
-        return users.findAllByNeighborhood( neighborhood);
+        return users.findAllByNeighborhood(neighborhood);
     }
 
 
@@ -199,14 +264,37 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    /*@RequestMapping("/randomUser")
-    public User randomUser(){
-        return users.findRandomUser();
-    }*/
-   /* @RequestMapping("/ratings")
-    public List<User> ratedUsers(){
-        return users.findAllOrderByPetRatingAsc();
-    }*/
+  /*  @RequestMapping(path = "/comments", method= RequestMethod.PUT)
+    public void addComment (HttpSession session,
+                            String thoughts,
+                            String receiver) throws Exception {
+        String username = (String) session.getAttribute("username");
+       int id = (int) session.getAttribute("id");
+        if (username == null){
+            throw new Exception("You're not logged in!!!!!");
+        }
+        User receiverUser = users.findOneById(id);
+        Comments comment = new Comments();
+        comment.comment = thoughts;
+        comment.user = receiverUser;
+        users.save(receiverUser);
+        comments.save(comment);
+    }
+   /* @RequestMapping("/userComments")
+    public List<Comments> userComments (HttpSession session){
+        String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+        return comments.findByUser(user);
+    }
+    @RequestMapping("/randomComment")
+    private Comments randomComment (){
+        return comments.findRandom();
+    } */
+
+    @RequestMapping(value = "/comments", method = RequestMethod.GET)
+    public List<Comment> allComments (){
+       return (List<Comment>) comments.findAll();
+    }
 
 
 }
