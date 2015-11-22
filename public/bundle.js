@@ -88,6 +88,7 @@ var tmpl = require('./templates');
 
 
 module.exports = Backbone.View.extend({
+  className: 'theFoot',
   template: _.template(tmpl.footer),
   initialize: function(){
 

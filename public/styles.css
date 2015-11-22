@@ -226,3 +226,7 @@ button .likes {
     max-height: 40px;
     max-width: 40px;
     overflow: hidden; }
+
+.theFoot {
+  margin: 0 auto;
+  padding-left: 500px; }
