@@ -54,6 +54,7 @@ module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
     $('.petView').css('width', '65%');
+    $('button').removeClass('hidden');
     this.addAll();
   },
   addOne: function(petModel){
@@ -13142,7 +13143,7 @@ aside:[
   header: [
   '<h1>Furr Face</h1>',
   '<form id="logout" action="logout" method="post">',
-  '<button class="logout btn">Logout</button>',
+  '<button class="logout btn hidden">Logout</button>',
   '</form>'
 
   ].join(""),

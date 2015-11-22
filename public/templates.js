@@ -80,7 +80,7 @@ aside:[
   header: [
   '<h1>Furr Face</h1>',
   '<form id="logout" action="logout" method="post">',
-  '<button class="logout btn">Logout</button>',
+  '<button class="logout btn hidden">Logout</button>',
   '</form>'
 
   ].join(""),
