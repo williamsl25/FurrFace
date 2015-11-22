@@ -9,6 +9,7 @@ module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
     $('.petView').css('width', '65%');
+    $('#logout').removeClass('hidden');
     this.addAll();
   },
   addOne: function(petModel){
