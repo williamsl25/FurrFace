@@ -70,7 +70,7 @@ aside:[
   '<nav>',
     '<ul>',
       '<li><a href="#homePage">Home</a></li>',
-      '<li><a href="#homePage">Edit My Pet Page</a></li>',
+      '<li><a href="#myPet">Edit My Pet Page</a></li>',
       '<li><a href="#homePage">See Pets Like Me</a></li>',
       '<li><a href="#homePage">See Pets in My Neighborhood</a></li>',
       '<li><a href="#homePage">Top Fuzzies</a></li>',
@@ -80,7 +80,7 @@ aside:[
   header: [
   '<h1>Furr Face</h1>',
   '<form id="logout" action="logout" method="post">',
-  '<button class="logout btn">Logout</button>',
+  '<button class="logout btn hidden">Logout</button>',
   '</form>'
 
   ].join(""),
@@ -88,5 +88,36 @@ aside:[
     '<h5>FurrFace | Facebook For Your Pet</h5>'
 
   ].join(""),
-
+  ownProfile: [
+    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
+    '<h4><%= petAge %></h4>',
+    '<p><%= neighborhood %></p>',
+    '<p><%= aboutMe %></p>',
+    '<form class= "editForm" action="editUser" enctype="multipart/form-data" method="post">',
+      '<input type="file" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
+      '<input type="text" name="petName" class="form-control theName" id="petName" placeholder="What is your pets name?">',
+      '<label for="male">What type of pet do you have?</label>',
+      '<select name="selectPetType">',
+        '<option value="Dog">Dog</option>',
+        '<option value="Cat" selected>Cat</option>',
+        '<option value="Bunny">Bunny</option>',
+        '<option value="Hedgehog">Hedgehog</option>',
+        '<option value="Bird">Bird</option>',
+        '<option value="Fish">Fish</option>',
+      '</select>',
+      '<input type="number" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?">',
+      '<label for="male">What neighborhood do you live in?</label>',
+      '<select name="selectNeighborhood">',
+        '<option value="James Island">James Island</option>',
+        '<option value="West Ashley" selected>West Ashley</option>',
+        '<option value="Mount Pleasant">Mount Pleasant</option>',
+        '<option value="South of Broad">South of Broad</option>',
+        '<option value="Cannonborough">Cannonborough</option>',
+        '<option value="Wagner Terrace">Wagner Terrace</option>',
+        '<option value="Isle of Palms">Isle of Palms</option>',
+      '</select>',
+      '<input type="text" name="aboutMe" id="aboutMe" class="form-control" placeholder="My Pet\'s Interests">',
+    '<button type="submit" class="btn btn-default">Submit</button>',
+    '</form>',
+  ].join(""),
 };
