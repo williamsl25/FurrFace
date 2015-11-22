@@ -1,10 +1,7 @@
 package com.theironyard.entities;
 
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -44,8 +41,10 @@ public class User {
     @Column(nullable = false)
     public int petRating;
 
-//    @Column(nullable = false)
-   // public ArrayList<String> comments;
+//   @Column(nullable = false)
+//   public ArrayList<String> comments;
+
+
 
     public String getFileName() {
         return imageURL;

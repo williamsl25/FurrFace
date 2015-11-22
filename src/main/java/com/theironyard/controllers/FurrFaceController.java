@@ -1,6 +1,6 @@
 package com.theironyard.controllers;
 
-import com.theironyard.entities.Comments;
+import com.theironyard.entities.Comment;
 import com.theironyard.entities.User;
 import com.theironyard.services.CommentRepository;
 import com.theironyard.services.UserRepository;
@@ -30,6 +30,8 @@ import java.util.List;
 public class FurrFaceController {
     @Autowired
     UserRepository users;
+   /* @Autowired
+    CommentRepository comments; */
     @Autowired
     CommentRepository comments;
 
@@ -48,13 +50,21 @@ public class FurrFaceController {
             terry.neighborhood = "West Ashley";
             users.save(terry);
 
-            Comments comment = new Comments();
-            comment.comment= "Test";
-            comment.user= terry;
+            Comment comment = new Comment();
+            comment.text = "THis is terry's test comment";
+            comment.user = terry;
+
             comments.save(comment);
 
+
+
+
+
+
+
+
 //hello
-            User doug = new User();
+           User doug = new User();
             doug.username = "Doug";
             doug.password = PasswordHash.createHash("1234");
             doug.petName = "Rowan";
@@ -65,6 +75,13 @@ public class FurrFaceController {
             doug.petAge = 8;
             doug.neighborhood = "Mount Pleasant";
             users.save(doug);
+
+
+          /*  Comments dougComment = new Comments();
+            dougComment.comment = "Double test";
+            dougComment.user = doug;
+            comments.save(dougComment); */
+
 
             User kate = new User();
             kate.username = "Kate";
@@ -163,7 +180,26 @@ public class FurrFaceController {
       //  System.out.println("goodbye!");
     }
     @RequestMapping(path = "/users", method = RequestMethod.GET)
-    public List<User> users(){
+    public List<User> users(HttpSession session,
+                            String petType,
+                            String neighborhood,
+                            Integer petAge,
+                            String petRating){
+        String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+
+       if(petRating!=null){
+           user.petRating += 1;
+       }
+
+
+        if (petType!=null){
+            return (List<User>) users.findByPetType(user.petType);
+        } if (neighborhood!=null){
+            return (List<User>) users.findAllByNeighborhood(user.neighborhood);
+        } if (petAge!=null){
+            return (List<User>) users.findAllByPetAge(user.petAge);
+        }else
         return (List<User>) users.findAll();
     }
 
@@ -228,7 +264,7 @@ public class FurrFaceController {
         return users.findAllByPetAge(petAge);
     }
 
-    @RequestMapping(path = "/comments", method= RequestMethod.PUT)
+  /*  @RequestMapping(path = "/comments", method= RequestMethod.PUT)
     public void addComment (HttpSession session,
                             String thoughts,
                             String receiver) throws Exception {
@@ -243,12 +279,21 @@ public class FurrFaceController {
         comment.user = receiverUser;
         users.save(receiverUser);
         comments.save(comment);
-
     }
+   /* @RequestMapping("/userComments")
+    public List<Comments> userComments (HttpSession session){
+        String username = (String) session.getAttribute("username");
+        User user = users.findOneByUsername(username);
+        return comments.findByUser(user);
+    }
+    @RequestMapping("/randomComment")
+    private Comments randomComment (){
+        return comments.findRandom();
+    } */
 
     @RequestMapping(value = "/comments", method = RequestMethod.GET)
-    public List<Comments> allComments (){
-       return (List<Comments>) comments.findAll();
+    public List<Comment> allComments (){
+       return (List<Comment>) comments.findAll();
     }
 
 
