@@ -10,6 +10,8 @@ module.exports = Backbone.View.extend({
   el: '.petProfile',
   initialize: function(){
     var self= this;
+    $('aside').removeClass('hidden');
+    $('.petView').css('width', '65%');
     var headerHTML = new HeaderView();
     var asideHTML = new AsideView();
     var footerHTML = new FooterView();
