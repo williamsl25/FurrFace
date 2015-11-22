@@ -60,11 +60,10 @@ h5{
 h3{
   margin: 0 auto;
   margin-bottom: 12px;
+  display: inline-block;
 }
-
-form{
-  margin: 0 auto;
-  padding-top: 30px;
+h4{
+  display: inline-block;
 }
 .dogPic{
   margin: 0 auto;
@@ -157,6 +156,23 @@ margin-bottom: 5px;
 .theName{
   margin-top: 15px;
 }
-.logout{
+button .logout{
   color: white;
+  text-align: left;
+  padding: 0;
+  margin: 0 auto;
+}
+form{
+  margin: 0 auto;
+  padding-top: 30px;
+}
+#logout{
+  text-align: left;
+  margin: 0 auto;
+  padding-left: 1150px;
+}
+.neighb{
+  padding-left: 5px;
+  font-style: italic;
+  display: inline-block;
 }
