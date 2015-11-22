@@ -114,7 +114,7 @@ public class FurrFaceController {
                       //@RequestParam(defaultValue = "http://bit.ly/1I09WCO")String imageURL,
                         MultipartFile imageURL,
                       String petName,
-                      @RequestParam(defaultValue = "unknown") String petType,
+                      @RequestParam(defaultValue = "unknown") String selectPetType,
                       @RequestParam(defaultValue = "1") int petAge,
                       @RequestParam(defaultValue = "0")  int petRating,
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
@@ -134,7 +134,7 @@ public class FurrFaceController {
 
             user.imageURL = photoFile.getName();
             user.petName = petName;
-            user.petType = petType;
+            user.petType = selectPetType;
             user.petAge = petAge;
             user.neighborhood = selectNeighborhood;
             user.aboutMe = aboutMe;
@@ -185,22 +185,22 @@ public class FurrFaceController {
                          HttpServletResponse response,
                          MultipartFile imageURL,
                          String petName,
-                         String petType,
+                         String selectPetType,
                          int petAge,
-                         String neighborhood,
+                         @RequestParam(defaultValue = "unknown")String selectNeighborhood,
                          String aboutMe,
-                         int petRating) throws Exception {
+                         @RequestParam(defaultValue = "0")int petRating) throws Exception {
         String username = (String) session.getAttribute("username");
         if (session.getAttribute("username") == null) {
             throw new Exception("Not logged in.");
         }
         User user = users.findOneByUsername(username);
         user.petName = petName;
-        user.petType = petType;
+        user.petType = selectPetType;
         user.petAge = petAge;
-        user.neighborhood = neighborhood;
+        user.neighborhood = selectNeighborhood;
         user.aboutMe = aboutMe;
-        user.petRating = petRating;
+
 
         File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
         FileOutputStream fos = new FileOutputStream(photoFile);
@@ -208,7 +208,7 @@ public class FurrFaceController {
         user.imageURL = photoFile.getName();
 
         users.save(user);
-        response.sendRedirect("/");
+        response.sendRedirect("/#myPet");
     }
 
     @RequestMapping("/#homePage")
