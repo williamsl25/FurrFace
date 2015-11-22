@@ -138,7 +138,7 @@ module.exports = Backbone.View.extend({
       self.$el.find('header').html(headerHTML.render().el);
       self.$el.find('aside').html(asideHTML.render().el);
       self.$el.find('footer').html(footerHTML.render().el);
-
+      $('button').removeClass('hidden');
 
     },
 
@@ -12983,11 +12983,16 @@ var $ = require('jquery');
 Backbone.$ = $;
 var ProfileView = require('./profileModelView');
 var PetModel = require('./petModel');
+var AsideView = require('./asideView');
+
 
 module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
     this.addAll();
+    var asideHTML = new AsideView();
+    self.$el.find('aside').html(asideHTML.render().el);
+
   },
   addOne: function(petModel){
     var petView = new ProfileView({model: petModel});
@@ -13000,7 +13005,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":16,"./profileModelView":20,"backbone":13,"jquery":14,"underscore":15}],20:[function(require,module,exports){
+},{"./asideView":3,"./petModel":16,"./profileModelView":20,"backbone":13,"jquery":14,"underscore":15}],20:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 var _ = require('underscore');
@@ -13041,6 +13046,8 @@ var ProfileCollection = require('./profileCollection');
 var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
 var NeighborhoodCollection = require('./NeighborhoodCollection');
+var AsideView = require('./asideView');
+
 
 module.exports = Backbone.Router.extend({
   routes: {
@@ -13095,7 +13102,7 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
+},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./asideView":3,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
 module.exports = {
   pet: [
     '<img src="<%= imageURL %>"><br>',
@@ -13109,7 +13116,8 @@ module.exports = {
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>',
     '<div class="likes">',
-    '<button class="likes">Like</button>',
+    '<img class="theLike likes" src="redheart.png" style="height:60px; width:60px;">',
+    '<h5><%= likes %></h5>',
     '</div>'
 
 
@@ -13169,17 +13177,17 @@ loginform: [
 aside:[
   '<nav>',
     '<ul>',
-      '<li><a href="#homePage">Home</a></li>',
-      '<li><a href="#myPet">Edit My Pet Page</a></li>',
-      '<li><a href="#petsLikeMe">See Pets Like Me</a></li>',
-      '<li><a href="#neighbors">See Pets in My Neighborhood</a></li>',
-      '<li><a href="#homePage">Top Fuzzies</a></li>',
+      '<button class="btn"><a href="#homePage">Home</a></button>',
+      '<button class="btn"><a href="#myPet">Edit My Pet Page</a></button>',
+      '<button class="btn"><a href="#petsLikeMe">See Pets Like Me</a></button>',
+      '<button class="btn"><a href="#neighbors">See Pets in My Neighborhood</a></button>',
+      '<button class="btn"><a href="#homePage">Top Fuzzies</a></button>',
     '</ul>',
   '</nav>'
 ].join(""),
   header: [
   '<h1>Furr Face</h1>',
-  '<form id="logout" action="logout" method="post">',
+  '<form id="logoutBtn" action="logout" method="post">',
   '<button class="logout btn hidden">Logout</button>',
   '</form>'
 

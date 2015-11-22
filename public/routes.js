@@ -10,6 +10,8 @@ var ProfileCollection = require('./profileCollection');
 var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
 var NeighborhoodCollection = require('./NeighborhoodCollection');
+var AsideView = require('./asideView');
+
 
 module.exports = Backbone.Router.extend({
   routes: {

@@ -29,16 +29,16 @@ h5 {
   color: white;
   font-size: 18px;
   text-align: center;
-  padding: 10px; }
+  padding: 10px;
+  display: inline-block; }
 
 .aside {
   background-color: #e5f2ff;
   display: inline-block;
   width: 20%;
-  height: 500px;
+  height: 340px;
   padding: 0 0 0 0;
   vertical-align: top;
-  padding-left: 30px;
   margin-left: 1px;
   text-decoration: none; }
 
@@ -81,25 +81,22 @@ article {
   article img {
     max-height: 210px;
     width: 210px;
-    overflow: hidden; }
-
-li {
-  list-style: none;
-  margin: 0 auto;
-  text-decoration: none; }
+    overflow: hidden;
+    border-color: #e5f2ff; }
 
 a {
   list-style: none;
   margin: 0 auto;
-  text-decoration: none; }
+  text-decoration: none;
+  display: block;
+  color: white; }
 
 nav {
   margin: 0 auto;
   text-decoration: none; }
 
-hover:li {
-  color: white;
-  font-weight: bold; }
+hover:a {
+  color: white; }
 
 .newuserLink {
   padding-bottom: 30px;
@@ -113,8 +110,13 @@ label {
   padding-bottom: 5px; }
 
 .btn {
-  margin-bottom: 15px;
-  margin-top: 10px; }
+  margin-bottom: 25px;
+  margin-top: 25px;
+  display: block;
+  margin-left: 0 auto;
+  margin-right: 0 auto;
+  text-decoration: none;
+  list-style: none; }
 
 label {
   padding-right: 8px;
@@ -151,19 +153,17 @@ form .loginForm {
   margin-top: 15px; }
 
 button .logout {
-  color: white;
-  text-align: left;
-  padding: 0;
-  margin: 0 auto; }
+  padding-left: 1150px;
+  padding-bottom: 15px; }
+
+#logoutBtn {
+  padding-bottom: 5px;
+  padding-left: 1150px;
+  padding-top: 0; }
 
 form {
   margin: 0 auto;
   padding-top: 30px; }
-
-#logout {
-  text-align: left;
-  margin: 0 auto;
-  padding-left: 1150px; }
 
 .neighb {
   padding-left: 5px;
@@ -187,3 +187,38 @@ section {
 
 .myEdit img {
   max-height: 300px; }
+
+ul {
+  padding: 0;
+  margin: 0 auto;
+  display: block; }
+
+button {
+  display: block;
+  margin: 0 auto; }
+
+button .likes {
+  border: none; }
+
+.likes {
+  padding: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #e5f2ff;
+  display: inline-block; }
+  .likes h5 {
+    margin: 0 auto;
+    color: black; }
+
+.theLike {
+  background-color: #e5f2ff;
+  border: 1px solid #e5f2ff;
+  display: inline-block;
+  color: black;
+  border-radius: 100%; }
+  .theLike img {
+    border: 1px solid #e5f2ff;
+    background-color: #e5f2ff;
+    max-height: 40px;
+    max-width: 40px;
+    overflow: hidden; }
