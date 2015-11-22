@@ -138,7 +138,7 @@ module.exports = Backbone.View.extend({
       self.$el.find('header').html(headerHTML.render().el);
       self.$el.find('aside').html(asideHTML.render().el);
       self.$el.find('footer').html(footerHTML.render().el);
-
+      $('button').removeClass('hidden');
 
     },
 
@@ -13179,7 +13179,7 @@ aside:[
 ].join(""),
   header: [
   '<h1>Furr Face</h1>',
-  '<form id="logout" action="logout" method="post">',
+  '<form id="logoutBtn" action="logout" method="post">',
   '<button class="logout btn hidden">Logout</button>',
   '</form>'
 
