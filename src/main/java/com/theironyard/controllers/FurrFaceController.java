@@ -192,7 +192,6 @@ public class FurrFaceController {
            user.likes += 1;
        }
 
-
         if (petType!=null){
             return (List<User>) users.findByPetType(user.petType);
         } if (neighborhood!=null){
