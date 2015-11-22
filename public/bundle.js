@@ -42,7 +42,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],3:[function(require,module,exports){
+},{"./templates":20,"backbone":12,"jquery":13,"underscore":14}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -53,6 +53,8 @@ var PetModel = require('./petModel');
 module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
+    $('.petView').css('width', '65%');
+    $('button').removeClass('hidden');
     this.addAll();
   },
   addOne: function(petModel){
@@ -86,7 +88,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],5:[function(require,module,exports){
+},{"./templates":20,"backbone":12,"jquery":13,"underscore":14}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -106,7 +108,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],6:[function(require,module,exports){
+},{"./templates":20,"backbone":12,"jquery":13,"underscore":14}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -181,7 +183,6 @@ module.exports = Backbone.View.extend({
 
     },
 
-
   render: function(){
     var markup = this.template({});
     this.$el.html(markup);
@@ -189,7 +190,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./footerView":4,"./headerView":5,"./templates":17,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
+},{"./footerView":4,"./headerView":5,"./templates":20,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
 var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
@@ -206,9 +207,10 @@ $(function () {
     Backbone.history.start();
 
   });
+  
 });
 
-},{"./allPetsCollection":1,"./collectionView":3,"./layoutView":7,"./routes":16,"backbone":12,"jquery":13}],10:[function(require,module,exports){
+},{"./allPetsCollection":1,"./collectionView":3,"./layoutView":7,"./routes":19,"backbone":12,"jquery":13}],10:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 var _ = require('underscore');
@@ -241,7 +243,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":15,"./templates":17,"backbone":12,"jquery":13,"underscore":14}],11:[function(require,module,exports){
+},{"./petModel":15,"./templates":20,"backbone":12,"jquery":13,"underscore":14}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -261,7 +263,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":17,"backbone":12,"jquery":13,"underscore":14}],12:[function(require,module,exports){
+},{"./templates":20,"backbone":12,"jquery":13,"underscore":14}],12:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -12931,6 +12933,70 @@ module.exports = Backbone.Model.extend({
 
 },{"backbone":12}],16:[function(require,module,exports){
 var Backbone = require('backbone');
+var PetModel = require('./petModel');
+
+module.exports = Backbone.Collection.extend({
+  url:'/currentUser',
+  model: PetModel,
+  config: function(){},
+  initialize: function(){},
+
+});
+
+},{"./petModel":15,"backbone":12}],17:[function(require,module,exports){
+var Backbone = require('backbone');
+var _ = require('underscore');
+var $ = require('jquery');
+Backbone.$ = $;
+var ProfileView = require('./profileModelView');
+var PetModel = require('./petModel');
+
+module.exports = Backbone.View.extend({
+  el: ".petView",
+  initialize: function(){
+    this.addAll();
+  },
+  addOne: function(petModel){
+    var petView = new ProfileView({model: petModel});
+    this.$el.append(petView.render().el);
+  },
+  addAll: function(){
+    $('.petView').html("");
+    _.each(this.collection.models, this.addOne, this);
+  },
+
+});
+
+},{"./petModel":15,"./profileModelView":18,"backbone":12,"jquery":13,"underscore":14}],18:[function(require,module,exports){
+var Backbone = require('backbone');
+var PetModel = require('./petModel');
+var _ = require('underscore');
+var $ = require('jquery');
+Backbone.$ = $;
+var tmpl = require('./templates');
+
+module.exports = Backbone.View.extend({
+  tagName: 'article',
+  className: 'pet',
+  template: _.template(tmpl.ownProfile),// remember to make ownProfile in template
+  initialize: function(){},
+  render: function(){
+    var markup = this.template(this.model.toJSON());
+    this.$el.html(markup);
+    return this;
+  },
+  showEdit: function(){
+    // display edit fields
+  },
+  submitEdit: function(){
+    // submit edited info and clear out form. may be done on backend
+  },
+
+
+});
+
+},{"./petModel":15,"./templates":20,"backbone":12,"jquery":13,"underscore":14}],19:[function(require,module,exports){
+var Backbone = require('backbone');
 var $ = require('jquery');
 var _ = require('underscore');
 var LayOutView = require('./layoutView');
@@ -12938,11 +13004,13 @@ var PetCollectionView = require('./collectionView');
 var AllPetsCollection = require('./allPetsCollection');
 var HomePageView = require('./homePageView');
 var NewUserView = require('./newUserView');
+var ProfileCollection = require('./profileCollection');
+var ProfileCollectionView = require('./profileCollectionView');
 
 module.exports = Backbone.Router.extend({
   routes: {
     'homePage': 'homePage',
-    'mypet': 'editPet',
+    'myPet': 'editPet',
     'petslikeme': 'petLikeMe',
     'neighbors': 'Neighborhood',
     'top': 'topFuzzie',
@@ -12961,14 +13029,14 @@ module.exports = Backbone.Router.extend({
   homePage: function () {
     var pets = new AllPetsCollection();
     pets.fetch().then(function () {
-      new PetCollectionView({collection: pets });
+      new PetCollectionView({collection: pets});
       new HomePageView();
   });
   },
   editPet: function () {
-    var pets = new AllPetsCollection();
-    pets.fetch().then(function () {
-      new PetCollectionView({collection: pets });
+    var profile = new ProfileCollection();
+    profile.fetch().then(function () {
+      new ProfileCollectionView({collection: profile});
   });
   },
   petLikeMe: function () {
@@ -12978,9 +13046,9 @@ module.exports = Backbone.Router.extend({
   });
   },
   Neighborhood: function () {
-    var pets = new AllPetsCollection();
+    var pets = new NeighborhoodCollection();
     pets.fetch().then(function () {
-      new PetCollectionView({collection: pets });
+      new NeighborhoodView({collection: pets });
   });
   },
   topFuzzie: function () {
@@ -12992,30 +13060,42 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./allPetsCollection":1,"./collectionView":3,"./homePageView":6,"./layoutView":7,"./newUserView":11,"backbone":12,"jquery":13,"underscore":14}],17:[function(require,module,exports){
+},{"./allPetsCollection":1,"./collectionView":3,"./homePageView":6,"./layoutView":7,"./newUserView":11,"./profileCollection":16,"./profileCollectionView":17,"backbone":12,"jquery":13,"underscore":14}],20:[function(require,module,exports){
 module.exports = {
   pet: [
-    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
-    '<h4><%= petAge %></h4>',
-    '<p><%= neighborhood %></p>',
+    '<img src="<%= imageURL %>"><br>',
+    '<h3><%= petName %></h3>  ',
+    '<h4><%= petAge %> yrs old</h4> <p class="neighb"><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
     '<div class="notes">',
-    '<h4>Comments:</h4>',
+    '<h4>My Messages!</h4>',
     '<form class="noteForm">',
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
-    '</form>'
+    '</form>',
+    '<div class="likes">',
+    '<button class="likes">Like</button>',
+    '</div>'
 
   ].join(""),
 
   newUserForm: [
+      '<div class="theNewForm">',
       '<form class= "petForm" action="addUser" enctype="multipart/form-data" method="post">',
         '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
         '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
         '<h3>Now is the time to introduce your FurrFace!</h3>',
         '<input type="file" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
-        '<input type="text" name="petName" class="form-control" id="petName" placeholder="What is your pets name?">',
-        '<input type="text" name="petType" class="form-control" id="petType" placeholder="What type of pet do you have?">',
+        '<input type="text" name="petName" class="form-control theName" id="petName" placeholder="What is your pets name?">',
+        '<label for="male">What type of pet do you have?</label>',
+        '<select name="selectPetType">',
+          '<option value="Dog">Dog</option>',
+          '<option value="Cat" selected>Cat</option>',
+          '<option value="Bunny">Bunny</option>',
+          '<option value="Hedgehog">Hedgehog</option>',
+          '<option value="Bird">Bird</option>',
+          '<option value="Fish">Fish</option>',
+        '</select>',
         '<input type="number" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?">',
         '<label for="male">What neighborhood do you live in?</label>',
         '<select name="selectNeighborhood">',
@@ -13025,30 +13105,35 @@ module.exports = {
           '<option value="South of Broad">South of Broad</option>',
           '<option value="Cannonborough">Cannonborough</option>',
           '<option value="Wagner Terrace">Wagner Terrace</option>',
+          '<option value="Isle of Palms">Isle of Palms</option>',
         '</select>',
         '<input type="text" name="aboutMe" id="aboutMe" class="form-control" placeholder="My Pet\'s Interests">',
       '<button type="submit" class="btn btn-default">Submit</button>',
-      '</form>'
+      '</form>',
+      '</div>'
 
   ].join(""),
 
 loginform: [
   '<div class="dogPic">',
   '<img class= "logginPic" src="http://fullyfeline.com/wp-content/uploads/2013/03/cats-and-dogs-group.jpg">',
-  '</div>',
   '<form class= "loginForm" action="login" enctype="multipart/form-data" method="post">',
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
     '<button type="submit" class="btn btn-default">Submit</button>',
     '</form>',
-    '<a href="#newUser">Create New Login</a>'
+    '<div class="newuserLink">',
+    '<a href="#newUser">Create a Profile for your Pet!</a>',
+    '</div>',
+    '</div>'
+
 ].join(""),
 
 aside:[
   '<nav>',
     '<ul>',
       '<li><a href="#homePage">Home</a></li>',
-      '<li><a href="#homePage">Edit My Pet Page</a></li>',
+      '<li><a href="#myPet">Edit My Pet Page</a></li>',
       '<li><a href="#homePage">See Pets Like Me</a></li>',
       '<li><a href="#homePage">See Pets in My Neighborhood</a></li>',
       '<li><a href="#homePage">Top Fuzzies</a></li>',
@@ -13056,14 +13141,48 @@ aside:[
   '</nav>'
 ].join(""),
   header: [
-  '<h1>Furr Face</h1>'
+  '<h1>Furr Face</h1>',
+  '<form id="logout" action="logout" method="post">',
+  '<button class="logout btn hidden">Logout</button>',
+  '</form>'
 
   ].join(""),
   footer: [
     '<h5>FurrFace | Facebook For Your Pet</h5>'
 
   ].join(""),
-
+  ownProfile: [
+    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
+    '<h4><%= petAge %></h4>',
+    '<p><%= neighborhood %></p>',
+    '<p><%= aboutMe %></p>',
+    '<form class= "editForm" action="editUser" enctype="multipart/form-data" method="post">',
+      '<input type="file" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
+      '<input type="text" name="petName" class="form-control theName" id="petName" placeholder="What is your pets name?">',
+      '<label for="male">What type of pet do you have?</label>',
+      '<select name="selectPetType">',
+        '<option value="Dog">Dog</option>',
+        '<option value="Cat" selected>Cat</option>',
+        '<option value="Bunny">Bunny</option>',
+        '<option value="Hedgehog">Hedgehog</option>',
+        '<option value="Bird">Bird</option>',
+        '<option value="Fish">Fish</option>',
+      '</select>',
+      '<input type="number" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?">',
+      '<label for="male">What neighborhood do you live in?</label>',
+      '<select name="selectNeighborhood">',
+        '<option value="James Island">James Island</option>',
+        '<option value="West Ashley" selected>West Ashley</option>',
+        '<option value="Mount Pleasant">Mount Pleasant</option>',
+        '<option value="South of Broad">South of Broad</option>',
+        '<option value="Cannonborough">Cannonborough</option>',
+        '<option value="Wagner Terrace">Wagner Terrace</option>',
+        '<option value="Isle of Palms">Isle of Palms</option>',
+      '</select>',
+      '<input type="text" name="aboutMe" id="aboutMe" class="form-control" placeholder="My Pet\'s Interests">',
+    '<button type="submit" class="btn btn-default">Submit</button>',
+    '</form>',
+  ].join(""),
 };
 
 },{}]},{},[9]);

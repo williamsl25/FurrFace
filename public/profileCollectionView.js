@@ -2,18 +2,16 @@ var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 Backbone.$ = $;
-var PetView = require('./modelView');
+var ProfileView = require('./profileModelView');
 var PetModel = require('./petModel');
 
 module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
-    $('.petView').css('width', '65%');
-    $('button').removeClass('hidden');
     this.addAll();
   },
   addOne: function(petModel){
-    var petView = new PetView({model: petModel});
+    var petView = new ProfileView({model: petModel});
     this.$el.append(petView.render().el);
   },
   addAll: function(){
