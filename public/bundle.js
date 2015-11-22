@@ -133,6 +133,8 @@ module.exports = Backbone.View.extend({
   el: '.petProfile',
   initialize: function(){
     var self= this;
+    $('aside').removeClass('hidden');
+    $('.petView').css('width', '65%');
     var headerHTML = new HeaderView();
     var asideHTML = new AsideView();
     var footerHTML = new FooterView();
@@ -156,6 +158,7 @@ var LogInView = require('./logInView');
 var NewUserView = require('./newUserView');
 var HeaderView = require('./headerView');
 var FooterView = require('./footerView');
+var AsideView = require('./asideView');
 
 module.exports = Backbone.View.extend({
   el: '.petProfile',
@@ -165,9 +168,11 @@ module.exports = Backbone.View.extend({
       var loginHTML = new LogInView();
       var headerHTML = new HeaderView();
       var footerHTML = new FooterView();
+      var asideHTML = new AsideView();
         self.$el.find('header').html(headerHTML.render().el);
         self.$el.find('footer').html(footerHTML.render().el);
         self.$el.find('.petView').html(loginHTML.render().el);
+        self.$el.find('aside').html(asideHTML.render().el);
 
     }
     else if(loc === 'newuser'){
@@ -180,7 +185,7 @@ module.exports = Backbone.View.extend({
 
   });
 
-},{"./footerView":5,"./headerView":6,"./logInView":9,"./newUserView":12,"backbone":13,"jquery":14,"underscore":15}],9:[function(require,module,exports){
+},{"./asideView":3,"./footerView":5,"./headerView":6,"./logInView":9,"./newUserView":12,"backbone":13,"jquery":14,"underscore":15}],9:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -13056,6 +13061,7 @@ var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
 var NeighborhoodCollection = require('./NeighborhoodCollection');
 var AsideView = require('./asideView');
+var TopFuzziesCollection = require('./topFuzziesCollection');
 
 
 module.exports = Backbone.Router.extend({
@@ -13087,7 +13093,9 @@ module.exports = Backbone.Router.extend({
   editPet: function () {
     var profile = new ProfileCollection();
     profile.fetch().then(function () {
+      new HomePageView();
       new ProfileCollectionView({collection: profile});
+
   });
   },
   petLikeMe: function () {
@@ -13103,15 +13111,16 @@ module.exports = Backbone.Router.extend({
   });
   },
   topFuzzie: function () {
-    var pets = new AllPetsCollection();
-    pets.fetch().then(function () {
-      new PetCollectionView({collection: pets });
+    var tops = new TopFuzziesCollection();
+    tops.fetch().then(function () {
+      new PetCollectionView({collection: tops });
+      new HomePageView();
   });
   }
 
 });
 
-},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./asideView":3,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
+},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./asideView":3,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"./topFuzziesCollection":23,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
 module.exports = {
   pet: [
     '<img src="<%= imageURL %>"><br>',
@@ -13190,7 +13199,7 @@ aside:[
       '<button class="btn"><a href="#myPet">Edit My Pet Page</a></button>',
       '<button class="btn"><a href="#petsLikeMe">See Pets Like Me</a></button>',
       '<button class="btn"><a href="#neighbors">See Pets in My Neighborhood</a></button>',
-      '<button class="btn"><a href="#homePage">Top Fuzzies</a></button>',
+      '<button class="btn"><a href="#top">Top Fuzzies</a></button>',
     '</ul>',
   '</nav>'
 ].join(""),
@@ -13241,4 +13250,16 @@ aside:[
   ].join(""),
 };
 
-},{}]},{},[10]);
+},{}],23:[function(require,module,exports){
+var Backbone = require('backbone');
+var PetModel = require('./petModel');
+
+module.exports = Backbone.Collection.extend({
+  url:'/top',
+  model: PetModel,
+  config: function(){},
+  initialize: function(){},
+
+});
+
+},{"./petModel":16,"backbone":13}]},{},[10]);
