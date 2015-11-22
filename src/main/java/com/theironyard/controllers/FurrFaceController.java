@@ -59,11 +59,11 @@ public class FurrFaceController {
             doug.password = PasswordHash.createHash("1234");
             doug.petName = "Rowan";
             doug.petRating = 10;
-            doug.aboutMe = "Hi, I'm Doug and I have a dog named Rowan!";
+            doug.aboutMe = "Rowan's a rescue mutt who enjoys hopping over a 5 foot fence and going on walkabouts";
             doug.petType = "dog";
-            doug.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
+            doug.imageURL = "IMG_0622.JPG";
             doug.petAge = 8;
-            doug.neighborhood = "James Island";
+            doug.neighborhood = "Mount Pleasant";
             users.save(doug);
 
             User kate = new User();
@@ -160,7 +160,7 @@ public class FurrFaceController {
     public void logout(HttpServletResponse response, HttpSession session) throws IOException {
         session.invalidate();
         response.sendRedirect("/");
-        System.out.println("goodbye!");
+      //  System.out.println("goodbye!");
     }
     @RequestMapping(path = "/users", method = RequestMethod.GET)
     public List<User> users(){
@@ -181,30 +181,45 @@ public class FurrFaceController {
     }
 
     @RequestMapping("/edit")
-    public void editUser(HttpSession session, HttpServletResponse response, String imageURL, String petName, String petType, int petAge, String neighborhood, String aboutMe, int petRating) throws Exception {
+    public void editUser(HttpSession session,
+                         HttpServletResponse response,
+                         MultipartFile imageURL,
+                         String petName,
+                         String petType,
+                         int petAge,
+                         String neighborhood,
+                         String aboutMe,
+                         int petRating) throws Exception {
         String username = (String) session.getAttribute("username");
         if (session.getAttribute("username") == null) {
             throw new Exception("Not logged in.");
         }
         User user = users.findOneByUsername(username);
-        user.imageURL = imageURL;
         user.petName = petName;
         user.petType = petType;
         user.petAge = petAge;
         user.neighborhood = neighborhood;
         user.aboutMe = aboutMe;
         user.petRating = petRating;
+
+        File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
+        FileOutputStream fos = new FileOutputStream(photoFile);
+        fos.write(imageURL.getBytes());
+        user.imageURL = photoFile.getName();
+
         users.save(user);
         response.sendRedirect("/");
     }
 
-    @RequestMapping("/petType")
-    public List<User> searchPetType (String petType){
-        return users.findAllByPetType(petType);
+    @RequestMapping("/#homePage")
+    public List<User> searchPetType(String petType)
+    {
+        return users.findByPetType(petType);
     }
+
     @RequestMapping("/neighborhood")
     public List<User> searchByNeighborhood (String neighborhood){
-        return users.findAllByNeighborhood( neighborhood);
+        return users.findAllByNeighborhood(neighborhood);
     }
 
 

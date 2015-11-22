@@ -12,7 +12,7 @@ import java.util.List;
 public interface UserRepository extends CrudRepository<User, Integer> {
        User findOneByUsername(String username);
        List<User> findAllByNeighborhood(String neighborhood);
-       List<User> findAllByPetType(String petType);
+       List<User> findByPetType(String petType);
        List<User> findAllByPetAge(int petAge);
        User findOneById(int id);
 
