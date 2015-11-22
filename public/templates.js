@@ -14,6 +14,8 @@ module.exports = {
     '<button class="likes">Like</button>',
     '</div>'
 
+
+
   ].join(""),
 
   newUserForm: [

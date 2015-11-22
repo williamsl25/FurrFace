@@ -225,6 +225,7 @@ module.exports = Backbone.View.extend({
   initialize: function(){},
   events: {
     'click .notesubmit': 'comment',
+    'click .likes': 'like',
   },
   comment: function(event){
     event.preventDefault();
@@ -233,6 +234,14 @@ module.exports = Backbone.View.extend({
     commentedOn.set({comments: comment});
     commentedOn.save();
     this.$('input').val("");
+  },
+  like: function(){
+    // like other people's profiles and update likes
+    var likedOne = this.model
+      likedOne.set({likes: likedOne.get('likes')+1});
+      likedOne.save();
+      likedOne.render();
+
   },
   render: function(){
     var markup = this.template(this.model.toJSON());
@@ -13076,6 +13085,8 @@ module.exports = {
     '<div class="likes">',
     '<button class="likes">Like</button>',
     '</div>'
+
+
 
   ].join(""),
 
