@@ -18,6 +18,12 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
     var comment = $('input[name="thoughts"]').val();
     var commentedOn = this.model;
+    console.log(typeof commentedOn.comments);
+    if(commentedOn.getComments === null){
+      commentedOn.set({comments: []});
+
+    }
+    console.log("post set: ", commentedOn.comments);
     commentedOn.set({comments: commentedOn.get('comments').push(commentedOn)});
     commentedOn.save();
     this.$('input').val("");
