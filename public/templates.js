@@ -11,7 +11,7 @@ module.exports = {
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>',
     '<div class="likes">',
-    '<button class="likes">Like</button>',
+    '<button type="button" class="likes"> <img class="theLike" src="redheart.png" style="height:30px; width:30px;"> </button>',
     '</div>'
 
 

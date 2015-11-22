@@ -124,7 +124,6 @@ label{
   display: block;
   margin-left: 0 auto;
   margin-right: 0 auto;
-  color: white;
   text-decoration: none;
   list-style: none;
 }
@@ -213,4 +212,15 @@ ul{
 button{
   display: block;
   margin: 0 auto;
+}
+// button .likes{
+//   background-color: #e5f2ff;
+//   border: none;
+//   display: inline-block;
+// }
+.theLikes{
+    background-color: #e5f2ff;
+    border: none;
+    display: inline-block;
+
 }

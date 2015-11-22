@@ -12983,11 +12983,16 @@ var $ = require('jquery');
 Backbone.$ = $;
 var ProfileView = require('./profileModelView');
 var PetModel = require('./petModel');
+var AsideView = require('./asideView');
+
 
 module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
     this.addAll();
+    var asideHTML = new AsideView();
+    self.$el.find('aside').html(asideHTML.render().el);
+
   },
   addOne: function(petModel){
     var petView = new ProfileView({model: petModel});
@@ -13000,7 +13005,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":16,"./profileModelView":20,"backbone":13,"jquery":14,"underscore":15}],20:[function(require,module,exports){
+},{"./asideView":3,"./petModel":16,"./profileModelView":20,"backbone":13,"jquery":14,"underscore":15}],20:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 var _ = require('underscore');
@@ -13041,6 +13046,8 @@ var ProfileCollection = require('./profileCollection');
 var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
 var NeighborhoodCollection = require('./NeighborhoodCollection');
+var AsideView = require('./asideView');
+
 
 module.exports = Backbone.Router.extend({
   routes: {
@@ -13095,7 +13102,7 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
+},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./asideView":3,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
 module.exports = {
   pet: [
     '<img src="<%= imageURL %>"><br>',
@@ -13109,7 +13116,7 @@ module.exports = {
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>',
     '<div class="likes">',
-    '<button class="likes">Like</button>',
+    '<button type="button" class="likes"> <img class="theLike" src="redheart.png" style="height:30px; width:30px;"> </button>',
     '</div>'
 
 

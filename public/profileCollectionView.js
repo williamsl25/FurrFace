@@ -4,11 +4,16 @@ var $ = require('jquery');
 Backbone.$ = $;
 var ProfileView = require('./profileModelView');
 var PetModel = require('./petModel');
+var AsideView = require('./asideView');
+
 
 module.exports = Backbone.View.extend({
   el: ".petView",
   initialize: function(){
     this.addAll();
+    var asideHTML = new AsideView();
+    self.$el.find('aside').html(asideHTML.render().el);
+
   },
   addOne: function(petModel){
     var petView = new ProfileView({model: petModel});
