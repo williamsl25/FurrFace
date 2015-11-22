@@ -14,13 +14,22 @@ module.exports = {
   ].join(""),
 
   newUserForm: [
+      '<div class="theNewForm">',
       '<form class= "petForm" action="addUser" enctype="multipart/form-data" method="post">',
         '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
         '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
         '<h3>Now is the time to introduce your FurrFace!</h3>',
         '<input type="file" name="imageURL" class="form-control" id="imageURL" placeholder="Paste an image of your pet here!">',
-        '<input type="text" name="petName" class="form-control" id="petName" placeholder="What is your pets name?">',
-        '<input type="text" name="petType" class="form-control" id="petType" placeholder="What type of pet do you have?">',
+        '<input type="text" name="petName" class="form-control theName" id="petName" placeholder="What is your pets name?">',
+        '<label for="male">What type of pet do you have?</label>',
+        '<select name="selectPetType">',
+          '<option value="Dog">Dog</option>',
+          '<option value="Cat" selected>Cat</option>',
+          '<option value="Bunny">Bunny</option>',
+          '<option value="Hedgehog">Hedgehog</option>',
+          '<option value="Bird">Bird</option>',
+          '<option value="Fish">Fish</option>',
+        '</select>',
         '<input type="number" name="petAge" class="form-control" id="petAge" placeholder="How old is your pet?">',
         '<label for="male">What neighborhood do you live in?</label>',
         '<select name="selectNeighborhood">',
@@ -30,23 +39,28 @@ module.exports = {
           '<option value="South of Broad">South of Broad</option>',
           '<option value="Cannonborough">Cannonborough</option>',
           '<option value="Wagner Terrace">Wagner Terrace</option>',
+          '<option value="Isle of Palms">Isle of Palms</option>',
         '</select>',
         '<input type="text" name="aboutMe" id="aboutMe" class="form-control" placeholder="My Pet\'s Interests">',
       '<button type="submit" class="btn btn-default">Submit</button>',
-      '</form>'
+      '</form>',
+      '</div>'
 
   ].join(""),
 
 loginform: [
   '<div class="dogPic">',
   '<img class= "logginPic" src="http://fullyfeline.com/wp-content/uploads/2013/03/cats-and-dogs-group.jpg">',
-  '</div>',
   '<form class= "loginForm" action="login" enctype="multipart/form-data" method="post">',
     '<input type="text" name="username" class="form-control" id="username" placeholder="Username"><br>',
     '<input type="password" name="password" class="form-control" id="password" placeholder="Password"><br> ',
     '<button type="submit" class="btn btn-default">Submit</button>',
     '</form>',
-    '<a href="#newUser">Create New Login</a>'
+    '<div class="newuserLink">',
+    '<a href="#newUser">Create a Profile for your Pet!</a>',
+    '</div>',
+    '</div>'
+
 ].join(""),
 
 aside:[
@@ -61,7 +75,10 @@ aside:[
   '</nav>'
 ].join(""),
   header: [
-  '<h1>Furr Face</h1>'
+  '<h1>Furr Face</h1>',
+  '<form action="logout" method="post">',
+  '<button class="logout btn">Logout</button>',
+  '</form>'
 
   ].join(""),
   footer: [

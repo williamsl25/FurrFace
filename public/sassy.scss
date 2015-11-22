@@ -49,7 +49,7 @@ h5{
 }
 .petView{
   display: inline-block;
-  width: 65%;
+  width: 85%;
   background-color: #e5f2ff;
   height: 100%;
   margin: 0 auto;
@@ -57,16 +57,13 @@ h5{
   margin-left: 95px;
 
 }
-.form-control{
-  width: 650px;
+h3{
+  margin: 0 auto;
+  margin-bottom: 12px;
 }
-input{
-height: 30px;
-padding: 10px;
-}
+
 form{
   margin: 0 auto;
-  padding-left: 55px;
   padding-top: 30px;
 }
 .dogPic{
@@ -75,7 +72,7 @@ form{
   text-align: center;
 }
 .logginPic{
-  max-height: 400px;
+  max-height: 320px;
   margin: 0;
 }
 article{
@@ -108,4 +105,58 @@ nav{
 hover:li{
   color: white;
   font-weight: bold;
+}
+.newuserLink{
+  padding-bottom: 30px;
+  padding-top: 15px;
+  padding-left: 10px;
+  text-align: center;
+  margin: 0 auto;
+}
+label{
+  padding-top: 5px;
+  padding-bottom: 5px;
+}
+.btn{
+  margin-bottom: 15px;
+  margin-top: 10px;
+}
+label{
+  padding-right: 8px;
+  border-radius: 5px;
+}
+.form-control{
+  width: 682px;
+  margin: 0 auto;
+  padding-top: 10px;
+}
+
+form .loginForm{
+  margin: 0 auto;
+  width: 450px;
+  padding-top: 30px;
+input{
+  margin: 0 auto;
+  padding: 0;
+}
+}.petform input{
+height: 30px;
+padding: 10px;
+margin-top: 5px;
+margin-bottom: 5px;
+}
+.theNewForm{
+  margin: 0 auto;
+  padding: 10px;
+  margin: 5px;
+  text-align: center;
+  .form-control{
+    padding: 5px;
+  }
+}
+.theName{
+  margin-top: 15px;
+}
+.logout{
+  color: white;
 }
