@@ -8,15 +8,24 @@ var tmpl = require('./templates');
 module.exports = Backbone.View.extend({
   tagName: 'article',
   className: 'pet',
-  template: _.template(tmpl.otherProfile),// remember to make otherProfile in template
+  template: _.template(tmpl.otherProfile),
+  urlRoot: '/users',
+  events: {
+    'click .notesubmit': 'comment',
+  },
   initialize: function(){},
   render: function(){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
     return this;
   },
-  comment: function(){
-    // make comments in other people's profiles
+  comment: function(event){
+    event.preventDefault();
+    var comment = $('input[name="thoughts"]').val();
+    var commentedOn = this.model;
+    commentedOn.set({comments: comment});
+    commentedOn.save();
+    this.$('input').val("");
   },
   like: function(){
     // like other people's profiles and update likes

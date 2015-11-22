@@ -222,8 +222,17 @@ module.exports = Backbone.View.extend({
   className: 'pet',
   template: _.template(tmpl.pet),
   initialize: function(){},
-
-
+  events: {
+    'click .notesubmit': 'comment',
+  },
+  comment: function(event){
+    event.preventDefault();
+    var comment = $('input[name="thoughts"]').val();
+    var commentedOn = this.model;
+    commentedOn.set({comments: comment});
+    commentedOn.save();
+    this.$('input').val("");
+  },
   render: function(){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -12917,7 +12926,7 @@ return jQuery;
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
-  urlRoot: '/currentUser',
+  urlRoot: '/comments',
   initialize: function () {}
 });
 
@@ -12992,11 +13001,18 @@ module.exports = {
     '<h4><%= petAge %> yrs old</h4> <p class="neighb"><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
     '<div class="notes">',
+
     '<h4>My Messages!</h4>',
     '<form class="noteForm" action="">',
+
+    '<h4>Comments:</h4>',
+    '<form class="noteForm">',
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
-    '</form>'
+    '</form>',
+    '<div class="likes">',
+    '<button class="likes">Like</button>',
+    '</div>'
 
   ].join(""),
 

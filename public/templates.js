@@ -6,10 +6,13 @@ module.exports = {
     '<p><%= aboutMe %></p>',
     '<div class="notes">',
     '<h4>My Messages!</h4>',
-    '<form class="noteForm" action="">',
+    '<form class="noteForm">',
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
-    '</form>'
+    '</form>',
+    '<div class="likes">',
+    '<button class="likes">Like</button>',
+    '</div>'
 
   ].join(""),
 
