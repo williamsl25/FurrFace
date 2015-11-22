@@ -88,6 +88,7 @@ var tmpl = require('./templates');
 
 
 module.exports = Backbone.View.extend({
+  className: 'theFoot',
   template: _.template(tmpl.footer),
   initialize: function(){
 
@@ -13115,7 +13116,7 @@ module.exports = {
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
     '</form>',
-    '<div class="likes">',
+    '<div class="likesDiv">',
     '<img class="theLike likes" src="redheart.png" style="height:60px; width:60px;">',
     '<h5><%= likes %></h5>',
     '</div>'

@@ -18,6 +18,8 @@ footer {
   background-color: #99ccff;
   margin: 0 auto;
   padding: 0; }
+  footer h5 {
+    margin: 0 auto; }
 
 h1 {
   text-align: center;
@@ -200,13 +202,14 @@ button {
 button .likes {
   border: none; }
 
-.likes {
+.likesDiv {
   padding: 1px;
   margin-top: 5px;
   margin-bottom: 5px;
   border: 1px solid #e5f2ff;
-  display: inline-block; }
-  .likes h5 {
+  display: inline-block;
+  color: black; }
+  .likesDiv h5 {
     margin: 0 auto;
     color: black; }
 
@@ -215,10 +218,15 @@ button .likes {
   border: 1px solid #e5f2ff;
   display: inline-block;
   color: black;
-  border-radius: 100%; }
+  border-radius: 100%;
+  color: black; }
   .theLike img {
     border: 1px solid #e5f2ff;
     background-color: #e5f2ff;
     max-height: 40px;
     max-width: 40px;
     overflow: hidden; }
+
+.theFoot {
+  margin: 0 auto;
+  padding-left: 500px; }
