@@ -29,7 +29,8 @@ h5 {
   color: white;
   font-size: 18px;
   text-align: center;
-  padding: 10px; }
+  padding: 10px;
+  display: inline-block; }
 
 .aside {
   background-color: #e5f2ff;
@@ -80,7 +81,8 @@ article {
   article img {
     max-height: 210px;
     width: 210px;
-    overflow: hidden; }
+    overflow: hidden;
+    border-color: #e5f2ff; }
 
 a {
   list-style: none;
@@ -195,7 +197,28 @@ button {
   display: block;
   margin: 0 auto; }
 
-.theLikes {
-  background-color: #e5f2ff;
-  border: none;
+button .likes {
+  border: none; }
+
+.likes {
+  padding: 1px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+  border: 1px solid #e5f2ff;
   display: inline-block; }
+  .likes h5 {
+    margin: 0 auto;
+    color: black; }
+
+.theLike {
+  background-color: #e5f2ff;
+  border: 1px solid #e5f2ff;
+  display: inline-block;
+  color: black;
+  border-radius: 100%; }
+  .theLike img {
+    border: 1px solid #e5f2ff;
+    background-color: #e5f2ff;
+    max-height: 40px;
+    max-width: 40px;
+    overflow: hidden; }
