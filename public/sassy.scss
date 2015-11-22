@@ -19,6 +19,9 @@ footer{
   background-color: #99ccff;
   margin: 0 auto;
   padding: 0;
+  h5{
+    margin: 0 auto;
+  }
 }
 
 h1{
@@ -220,12 +223,14 @@ button{
 button .likes{
   border: none;
 }
-.likes{
+.likesDiv{
   padding: 1px;
   margin-top: 5px;
   margin-bottom: 5px;
   border: 1px solid #e5f2ff;
   display: inline-block;
+  color:black;
+
   h5{
       margin: 0 auto;
     color:black;
@@ -237,6 +242,8 @@ button .likes{
     display: inline-block;
     color:black;
     border-radius: 100%;
+    color:black;
+
 
     img{
       border: 1px solid #e5f2ff;
