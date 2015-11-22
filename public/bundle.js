@@ -252,7 +252,9 @@ module.exports = Backbone.View.extend({
     var likedOne = this.model;
       likedOne.set({likes: likedOne.get('likes')+1});
       likedOne.save();
-      likedOne.render();
+      console.log("this model ", this.model);
+      console.log("likeOne", likedOne);
+      this.render();
 
   },
   render: function(){
