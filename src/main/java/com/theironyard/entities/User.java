@@ -41,8 +41,8 @@ public class User {
     @Column(nullable = false)
     public int likes;
 
-//   @Column(nullable = false)
-//   public ArrayList<String> comments;
+    public ArrayList<String> comments;
+
 
 
 
