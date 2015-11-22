@@ -75,7 +75,10 @@ aside:[
   '</nav>'
 ].join(""),
   header: [
-  '<h1>Furr Face</h1>'
+  '<h1>Furr Face</h1>',
+  '<form action="logout" method="post">',
+  '<button class="logout btn">Logout</button>',
+  '</form>'
 
   ].join(""),
   footer: [

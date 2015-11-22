@@ -206,6 +206,7 @@ $(function () {
     Backbone.history.start();
 
   });
+  
 });
 
 },{"./allPetsCollection":1,"./collectionView":3,"./layoutView":7,"./routes":16,"backbone":12,"jquery":13}],10:[function(require,module,exports){
@@ -13061,7 +13062,10 @@ aside:[
   '</nav>'
 ].join(""),
   header: [
-  '<h1>Furr Face</h1>'
+  '<h1>Furr Face</h1>',
+  '<form action="logout" method="post">',
+  '<button class="logout btn">Logout</button>',
+  '</form>'
 
   ].join(""),
   footer: [
