@@ -3,6 +3,18 @@ var Backbone = require('backbone');
 var PetModel = require('./petModel');
 
 module.exports = Backbone.Collection.extend({
+  url:'/users?neighborhood',
+  model: PetModel,
+  config: function(){},
+  initialize: function(){},
+
+});
+
+},{"./petModel":16,"backbone":13}],2:[function(require,module,exports){
+var Backbone = require('backbone');
+var PetModel = require('./petModel');
+
+module.exports = Backbone.Collection.extend({
   url:'/users',
   model: PetModel,
   config: function(){},
@@ -10,7 +22,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./petModel":15,"backbone":12}],2:[function(require,module,exports){
+},{"./petModel":16,"backbone":13}],3:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -42,7 +54,7 @@ module.exports = Backbone.View.extend({
   }
 });
 
-},{"./templates":21,"backbone":12,"jquery":13,"underscore":14}],3:[function(require,module,exports){
+},{"./templates":22,"backbone":13,"jquery":14,"underscore":15}],4:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -67,7 +79,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./modelView":10,"./petModel":15,"backbone":12,"jquery":13,"underscore":14}],4:[function(require,module,exports){
+},{"./modelView":11,"./petModel":16,"backbone":13,"jquery":14,"underscore":15}],5:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -87,7 +99,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":21,"backbone":12,"jquery":13,"underscore":14}],5:[function(require,module,exports){
+},{"./templates":22,"backbone":13,"jquery":14,"underscore":15}],6:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -107,7 +119,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":21,"backbone":12,"jquery":13,"underscore":14}],6:[function(require,module,exports){
+},{"./templates":22,"backbone":13,"jquery":14,"underscore":15}],7:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -134,7 +146,7 @@ module.exports = Backbone.View.extend({
 
   });
 
-},{"./asideView":2,"./footerView":4,"./headerView":5,"backbone":12,"jquery":13,"underscore":14}],7:[function(require,module,exports){
+},{"./asideView":3,"./footerView":5,"./headerView":6,"backbone":13,"jquery":14,"underscore":15}],8:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -167,7 +179,7 @@ module.exports = Backbone.View.extend({
 
   });
 
-},{"./footerView":4,"./headerView":5,"./logInView":8,"./newUserView":11,"backbone":12,"jquery":13,"underscore":14}],8:[function(require,module,exports){
+},{"./footerView":5,"./headerView":6,"./logInView":9,"./newUserView":12,"backbone":13,"jquery":14,"underscore":15}],9:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -190,7 +202,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./footerView":4,"./headerView":5,"./templates":21,"backbone":12,"jquery":13,"underscore":14}],9:[function(require,module,exports){
+},{"./footerView":5,"./headerView":6,"./templates":22,"backbone":13,"jquery":14,"underscore":15}],10:[function(require,module,exports){
 var $ = require('jquery');
 var AllPetsCollection = require('./allPetsCollection');
 var PetsView = require('./collectionView');
@@ -210,7 +222,7 @@ $(function () {
   
 });
 
-},{"./allPetsCollection":1,"./collectionView":3,"./layoutView":7,"./routes":20,"backbone":12,"jquery":13}],10:[function(require,module,exports){
+},{"./allPetsCollection":2,"./collectionView":4,"./layoutView":8,"./routes":21,"backbone":13,"jquery":14}],11:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 var _ = require('underscore');
@@ -252,7 +264,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":15,"./templates":21,"backbone":12,"jquery":13,"underscore":14}],11:[function(require,module,exports){
+},{"./petModel":16,"./templates":22,"backbone":13,"jquery":14,"underscore":15}],12:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 Backbone.$ = $;
@@ -272,7 +284,7 @@ module.exports = Backbone.View.extend({
   },
 });
 
-},{"./templates":21,"backbone":12,"jquery":13,"underscore":14}],12:[function(require,module,exports){
+},{"./templates":22,"backbone":13,"jquery":14,"underscore":15}],13:[function(require,module,exports){
 (function (global){
 //     Backbone.js 1.2.3
 
@@ -2170,7 +2182,7 @@ module.exports = Backbone.View.extend({
 }));
 
 }).call(this,typeof global !== "undefined" ? global : typeof self !== "undefined" ? self : typeof window !== "undefined" ? window : {})
-},{"jquery":13,"underscore":14}],13:[function(require,module,exports){
+},{"jquery":14,"underscore":15}],14:[function(require,module,exports){
 /*!
  * jQuery JavaScript Library v2.1.4
  * http://jquery.com/
@@ -11382,7 +11394,7 @@ return jQuery;
 
 }));
 
-},{}],14:[function(require,module,exports){
+},{}],15:[function(require,module,exports){
 //     Underscore.js 1.8.3
 //     http://underscorejs.org
 //     (c) 2009-2015 Jeremy Ashkenas, DocumentCloud and Investigative Reporters & Editors
@@ -12932,7 +12944,7 @@ return jQuery;
   }
 }.call(this));
 
-},{}],15:[function(require,module,exports){
+},{}],16:[function(require,module,exports){
 var Backbone = require('backbone');
 
 module.exports = Backbone.Model.extend({
@@ -12940,7 +12952,7 @@ module.exports = Backbone.Model.extend({
   initialize: function () {}
 });
 
-},{"backbone":12}],16:[function(require,module,exports){
+},{"backbone":13}],17:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 
@@ -12952,7 +12964,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./petModel":15,"backbone":12}],17:[function(require,module,exports){
+},{"./petModel":16,"backbone":13}],18:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 
@@ -12964,7 +12976,7 @@ module.exports = Backbone.Collection.extend({
 
 });
 
-},{"./petModel":15,"backbone":12}],18:[function(require,module,exports){
+},{"./petModel":16,"backbone":13}],19:[function(require,module,exports){
 var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
@@ -12988,7 +13000,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":15,"./profileModelView":19,"backbone":12,"jquery":13,"underscore":14}],19:[function(require,module,exports){
+},{"./petModel":16,"./profileModelView":20,"backbone":13,"jquery":14,"underscore":15}],20:[function(require,module,exports){
 var Backbone = require('backbone');
 var PetModel = require('./petModel');
 var _ = require('underscore');
@@ -13016,7 +13028,7 @@ module.exports = Backbone.View.extend({
 
 });
 
-},{"./petModel":15,"./templates":21,"backbone":12,"jquery":13,"underscore":14}],20:[function(require,module,exports){
+},{"./petModel":16,"./templates":22,"backbone":13,"jquery":14,"underscore":15}],21:[function(require,module,exports){
 var Backbone = require('backbone');
 var $ = require('jquery');
 var _ = require('underscore');
@@ -13028,13 +13040,14 @@ var NewUserView = require('./newUserView');
 var ProfileCollection = require('./profileCollection');
 var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
+var NeighborhoodCollection = require('./NeighborhoodCollection');
 
 module.exports = Backbone.Router.extend({
   routes: {
     'homePage': 'homePage',
     'myPet': 'editPet',
     'petsLikeMe': 'petLikeMe',
-    'neighbors': 'Neighborhood',
+    'neighbors': 'neighborhood',
     'top': 'topFuzzie',
     'newUser': 'newUser',
     '': 'login'
@@ -13067,10 +13080,10 @@ module.exports = Backbone.Router.extend({
       new PetCollectionView({collection: petsLikeMe});
   });
   },
-  Neighborhood: function () {
+  neighborhood: function () {
     var pets = new NeighborhoodCollection();
     pets.fetch().then(function () {
-      new NeighborhoodView({collection: pets });
+      new PetCollectionView({collection: pets });
   });
   },
   topFuzzie: function () {
@@ -13082,7 +13095,7 @@ module.exports = Backbone.Router.extend({
 
 });
 
-},{"./allPetsCollection":1,"./collectionView":3,"./homePageView":6,"./layoutView":7,"./newUserView":11,"./petsLikeMeCollection":16,"./profileCollection":17,"./profileCollectionView":18,"backbone":12,"jquery":13,"underscore":14}],21:[function(require,module,exports){
+},{"./NeighborhoodCollection":1,"./allPetsCollection":2,"./collectionView":4,"./homePageView":7,"./layoutView":8,"./newUserView":12,"./petsLikeMeCollection":17,"./profileCollection":18,"./profileCollectionView":19,"backbone":13,"jquery":14,"underscore":15}],22:[function(require,module,exports){
 module.exports = {
   pet: [
     '<img src="<%= imageURL %>"><br>',
@@ -13159,7 +13172,7 @@ aside:[
       '<li><a href="#homePage">Home</a></li>',
       '<li><a href="#myPet">Edit My Pet Page</a></li>',
       '<li><a href="#petsLikeMe">See Pets Like Me</a></li>',
-      '<li><a href="#homePage">See Pets in My Neighborhood</a></li>',
+      '<li><a href="#neighbors">See Pets in My Neighborhood</a></li>',
       '<li><a href="#homePage">Top Fuzzies</a></li>',
     '</ul>',
   '</nav>'
@@ -13211,4 +13224,4 @@ aside:[
   ].join(""),
 };
 
-},{}]},{},[9]);
+},{}]},{},[10]);
