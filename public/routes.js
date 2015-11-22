@@ -9,13 +9,14 @@ var NewUserView = require('./newUserView');
 var ProfileCollection = require('./profileCollection');
 var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
+var NeighborhoodCollection = require('./NeighborhoodCollection');
 
 module.exports = Backbone.Router.extend({
   routes: {
     'homePage': 'homePage',
     'myPet': 'editPet',
     'petsLikeMe': 'petLikeMe',
-    'neighbors': 'Neighborhood',
+    'neighbors': 'neighborhood',
     'top': 'topFuzzie',
     'newUser': 'newUser',
     '': 'login'
@@ -48,10 +49,10 @@ module.exports = Backbone.Router.extend({
       new PetCollectionView({collection: petsLikeMe});
   });
   },
-  Neighborhood: function () {
+  neighborhood: function () {
     var pets = new NeighborhoodCollection();
     pets.fetch().then(function () {
-      new NeighborhoodView({collection: pets });
+      new PetCollectionView({collection: pets });
   });
   },
   topFuzzie: function () {
