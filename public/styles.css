@@ -169,3 +169,21 @@ form {
   padding-left: 5px;
   font-style: italic;
   display: inline-block; }
+
+.hidden {
+  display: none; }
+
+.editPage {
+  border: none; }
+
+section {
+  padding-top: 15px;
+  padding-bottom: 15px;
+  margin: 0 auto;
+  text-align: center; }
+
+.myEdit h3 {
+  padding-top: 20px; }
+
+.myEdit img {
+  max-height: 300px; }
