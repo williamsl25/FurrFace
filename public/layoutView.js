@@ -18,6 +18,7 @@ module.exports = Backbone.View.extend({
         self.$el.find('header').html(headerHTML.render().el);
         self.$el.find('footer').html(footerHTML.render().el);
         self.$el.find('.petView').html(loginHTML.render().el);
+
     }
     else if(loc === 'newuser'){
       var newUserHTML = new NewUserView();

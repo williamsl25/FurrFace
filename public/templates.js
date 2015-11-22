@@ -91,6 +91,7 @@ aside:[
 
   ].join(""),
   ownProfile: [
+    // '<div class="editPage"',
     '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
     '<h4><%= petAge %></h4>',
     '<p><%= neighborhood %></p>',
@@ -120,6 +121,7 @@ aside:[
       '</select>',
       '<input type="text" name="aboutMe" id="aboutMe" class="form-control" value="<%= aboutMe %>">',
     '<button type="submit" class="btn btn-default">Submit</button>',
-    '</form>',
+    '</form>'
+    // '</div>'
   ].join(""),
 };
