@@ -243,7 +243,7 @@ module.exports = Backbone.View.extend({
     event.preventDefault();
     var comment = $('input[name="thoughts"]').val();
     var commentedOn = this.model;
-    commentedOn.set({comments: comment});
+    commentedOn.set({comments: commentedOn.get('comments').push(commentedOn)});
     commentedOn.save();
     this.$('input').val("");
   },
