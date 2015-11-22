@@ -1,11 +1,11 @@
 module.exports = {
   pet: [
-    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
-    '<h4><%= petAge %></h4>',
-    '<p><%= neighborhood %></p>',
+    '<img src="<%= imageURL %>"><br>',
+    '<h3><%= petName %></h3>  ',
+    '<h4><%= petAge %> yrs old</h4> <p class="neighb"><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
     '<div class="notes">',
-    '<h4>Comments:</h4>',
+    '<h4>My Messages!</h4>',
     '<form class="noteForm" action="">',
     '<input type="text" name="thoughts" class="noteWO" placeholder="Add a comment">',
     '<button type="submit" name="button" class="btn notesubmit">Submit</button>',
@@ -76,7 +76,7 @@ aside:[
 ].join(""),
   header: [
   '<h1>Furr Face</h1>',
-  '<form action="logout" method="post">',
+  '<form id="logout" action="logout" method="post">',
   '<button class="logout btn">Logout</button>',
   '</form>'
 
