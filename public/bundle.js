@@ -13169,11 +13169,11 @@ loginform: [
 aside:[
   '<nav>',
     '<ul>',
-      '<li><a href="#homePage">Home</a></li>',
-      '<li><a href="#myPet">Edit My Pet Page</a></li>',
-      '<li><a href="#petsLikeMe">See Pets Like Me</a></li>',
-      '<li><a href="#neighbors">See Pets in My Neighborhood</a></li>',
-      '<li><a href="#homePage">Top Fuzzies</a></li>',
+      '<button class="btn"><a href="#homePage">Home</a></button>',
+      '<button class="btn"><a href="#myPet">Edit My Pet Page</a></button>',
+      '<button class="btn"><a href="#petsLikeMe">See Pets Like Me</a></button>',
+      '<button class="btn"><a href="#neighbors">See Pets in My Neighborhood</a></button>',
+      '<button class="btn"><a href="#homePage">Top Fuzzies</a></button>',
     '</ul>',
   '</nav>'
 ].join(""),
