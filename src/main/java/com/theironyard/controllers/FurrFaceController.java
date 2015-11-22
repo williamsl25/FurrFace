@@ -44,7 +44,7 @@ public class FurrFaceController {
             terry.petName = "Maggie";
             terry.likes = 5;
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
-            terry.petType = "bunny";
+            terry.petType = "Bunny";
             terry.imageURL = "Baby-Bunny-11.jpg";
             terry.petAge = 8;
             terry.neighborhood = "West Ashley";
@@ -70,7 +70,7 @@ public class FurrFaceController {
             doug.petName = "Rowan";
             doug.likes = 10;
             doug.aboutMe = "Rowan's a rescue mutt who enjoys hopping over a 5 foot fence and going on walkabouts";
-            doug.petType = "dog";
+            doug.petType = "Dog";
             doug.imageURL = "IMG_0622.JPG";
             doug.petAge = 8;
             doug.neighborhood = "Mount Pleasant";
@@ -89,7 +89,7 @@ public class FurrFaceController {
             kate.petName = "Balto";
             kate.likes = 2;
             kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
-            kate.petType = "dog";
+            kate.petType = "Dog";
             kate.imageURL = "shar-pei-Puppy.jpg";
             kate.petAge = 4;
             kate.neighborhood = "West Ashley";
@@ -101,7 +101,7 @@ public class FurrFaceController {
             lindsay.petName = "Mr. Whiskers";
             lindsay.likes = 3;
             lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
-            lindsay.petType = "cat";
+            lindsay.petType = "Cat";
             lindsay.imageURL = "fluffy-kitten-ace.jpg";
             lindsay.petAge = 3;
             lindsay.neighborhood = "South of Broad";
@@ -111,7 +111,7 @@ public class FurrFaceController {
             bryan.username = "Bryan";
             bryan.password = PasswordHash.createHash("1234");
             bryan.petName = "Callie";
-            bryan.petType = "cat";
+            bryan.petType = "Cat";
             bryan.likes = 1;
             bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
             bryan.imageURL = "fluffy-kitten-ace.jpg" ;
@@ -221,26 +221,36 @@ public class FurrFaceController {
                          MultipartFile imageURL,
                          String petName,
                          String selectPetType,
-                         int petAge,
-                         @RequestParam(defaultValue = "unknown")String selectNeighborhood,
-                         String aboutMe,
-                         @RequestParam(defaultValue = "0")int petRating) throws Exception {
+                        Integer petAge,
+                         String selectNeighborhood,
+                         String aboutMe) throws Exception {
         String username = (String) session.getAttribute("username");
         if (session.getAttribute("username") == null) {
             throw new Exception("Not logged in.");
         }
         User user = users.findOneByUsername(username);
-        user.petName = petName;
-        user.petType = selectPetType;
-        user.petAge = petAge;
-        user.neighborhood = selectNeighborhood;
-        user.aboutMe = aboutMe;
+        if(petName!=null){
+            user.petName = petName;
+        }
+        if (selectPetType!=null){
+            user.petType = selectPetType;
+        }
+        if(selectNeighborhood!=null){
+            user.neighborhood =selectNeighborhood;
+        }
+        if(aboutMe!=null){
+            user.aboutMe = aboutMe;
+        }
+        if (petAge!=null){
+            user.petAge = petAge;
+        }
 
-
-        File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
-        FileOutputStream fos = new FileOutputStream(photoFile);
-        fos.write(imageURL.getBytes());
-        user.imageURL = photoFile.getName();
+        if (imageURL!=null) {
+            File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
+            FileOutputStream fos = new FileOutputStream(photoFile);
+            fos.write(imageURL.getBytes());
+            user.imageURL = photoFile.getName();
+        }
 
         users.save(user);
         response.sendRedirect("/#myPet");
@@ -256,6 +266,7 @@ public class FurrFaceController {
     public List<User> searchByNeighborhood (String neighborhood){
         return users.findAllByNeighborhood(neighborhood);
     }
+
 
 
     @RequestMapping("/petAge")
