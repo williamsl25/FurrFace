@@ -9,7 +9,6 @@ var NewUserView = require('./newUserView');
 var ProfileCollection = require('./profileCollection');
 var ProfileCollectionView = require('./profileCollectionView');
 var PetsLikeMeCollection = require('./petsLikeMeCollection');
-var PetsLikeMeCollectionView = require('./petsLikeMeCollectionView');
 
 module.exports = Backbone.Router.extend({
   routes: {
@@ -46,7 +45,7 @@ module.exports = Backbone.Router.extend({
   petLikeMe: function () {
     var petsLikeMe = new PetsLikeMeCollection();
     petsLikeMe.fetch().then(function () {
-      new PetsLikeMeCollectionView({collection: petsLikeMe });
+      new PetCollectionView({collection: petsLikeMe});
   });
   },
   Neighborhood: function () {
