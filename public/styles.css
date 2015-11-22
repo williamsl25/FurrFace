@@ -181,3 +181,9 @@ section {
   padding-bottom: 15px;
   margin: 0 auto;
   text-align: center; }
+
+.myEdit h3 {
+  padding-top: 20px; }
+
+.myEdit img {
+  max-height: 300px; }

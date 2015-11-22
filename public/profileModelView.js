@@ -7,7 +7,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'section',
-  className: '',
+  className: 'myEdit',
   template: _.template(tmpl.ownProfile),// remember to make ownProfile in template
   initialize: function(){},
   render: function(){

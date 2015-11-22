@@ -12998,7 +12998,7 @@ var tmpl = require('./templates');
 
 module.exports = Backbone.View.extend({
   tagName: 'section',
-  className: '',
+  className: 'myEdit',
   template: _.template(tmpl.ownProfile),// remember to make ownProfile in template
   initialize: function(){},
   render: function(){
@@ -13177,9 +13177,9 @@ aside:[
   ].join(""),
   ownProfile: [
     // '<div class="editPage"',
-    '<img src="<%= imageURL %>"><h3><%= petName %></h3>',
-    '<h4><%= petAge %></h4>',
-    '<p><%= neighborhood %></p>',
+    '<img src="<%= imageURL %>"><br><h3><%= petName %>, ',
+    '<%= petAge %></h3>',
+    '<p class="neighb"><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
     '<form class= "editForm" action="editUser" enctype="multipart/form-data" method="post">',
       '<input type="file" name="imageURL" class="form-control" id="imageURL">',
