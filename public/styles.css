@@ -127,7 +127,7 @@ label {
 .form-control {
   width: 682px;
   margin: 0 auto;
-  padding-top: 10px; }
+  padding-top: 5px; }
 
 form .loginForm {
   margin: 0 auto;
@@ -152,7 +152,7 @@ form .loginForm {
     padding: 5px; }
 
 .theName {
-  margin-top: 15px; }
+  margin-top: 5px; }
 
 button .logout {
   padding-left: 1150px;
