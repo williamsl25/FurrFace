@@ -46,9 +46,9 @@ module.exports = Backbone.Router.extend({
   });
   },
   Neighborhood: function () {
-    var pets = new AllPetsCollection();
+    var pets = new NeighborhoodCollection();
     pets.fetch().then(function () {
-      new PetCollectionView({collection: pets });
+      new NeighborhoodView({collection: pets });
   });
   },
   topFuzzie: function () {
