@@ -180,7 +180,7 @@ public class FurrFaceController {
         return users.findOneById(id);
     }
 
-    @RequestMapping("/edit")
+    @RequestMapping("/editUser")
     public void editUser(HttpSession session,
                          HttpServletResponse response,
                          MultipartFile imageURL,
