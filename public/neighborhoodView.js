@@ -5,11 +5,9 @@ var _= require('underscore');
 var HeaderView = require('./headerView');
 var AsideView = require('./asideView');
 var FooterView = require('./footerView');
-var NeighborhoodView = require('./neighborhoodView')
+var NeighborhoodView = require('./neighborhoodView');
 
 module.exports = Backbone.View.extend({
-
-
   el: '.petView',
   initialize: function(){
     var self= this;
