@@ -42,10 +42,10 @@ public class FurrFaceController {
             terry.username = "Terry";
             terry.password = PasswordHash.createHash("1234");
             terry.petName = "Maggie";
-            terry.petRating = 0;
+            terry.likes = 5;
             terry.aboutMe = "Hi, I'm terry and I have a dog named Maggie!";
-            terry.petType = "dog";
-            terry.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
+            terry.petType = "bunny";
+            terry.imageURL = "Baby-Bunny-11.jpg";
             terry.petAge = 8;
             terry.neighborhood = "West Ashley";
             users.save(terry);
@@ -68,7 +68,7 @@ public class FurrFaceController {
             doug.username = "Doug";
             doug.password = PasswordHash.createHash("1234");
             doug.petName = "Rowan";
-            doug.petRating = 10;
+            doug.likes = 10;
             doug.aboutMe = "Rowan's a rescue mutt who enjoys hopping over a 5 foot fence and going on walkabouts";
             doug.petType = "dog";
             doug.imageURL = "IMG_0622.JPG";
@@ -87,11 +87,11 @@ public class FurrFaceController {
             kate.username = "Kate";
             kate.password = PasswordHash.createHash("1234");
             kate.petName = "Balto";
-            kate.petRating = 10;
+            kate.likes = 2;
             kate.aboutMe = "Hi, I'm Kate and I have a dog named katedog!";
             kate.petType = "dog";
-            kate.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png";
-            kate.petAge = 8;
+            kate.imageURL = "shar-pei-Puppy.jpg";
+            kate.petAge = 4;
             kate.neighborhood = "West Ashley";
             users.save(kate);
 
@@ -99,11 +99,11 @@ public class FurrFaceController {
             lindsay.username = "Lindsay";
             lindsay.password = PasswordHash.createHash("1234");
             lindsay.petName = "Mr. Whiskers";
-            lindsay.petRating = 10;
+            lindsay.likes = 3;
             lindsay.aboutMe = "Hi, I'm Lindsay and I have a cat!!";
             lindsay.petType = "cat";
-            lindsay.imageURL = "tumblr_m7vve1Fqli1qzfb9so1_1280.jpg";
-            lindsay.petAge = 8;
+            lindsay.imageURL = "fluffy-kitten-ace.jpg";
+            lindsay.petAge = 3;
             lindsay.neighborhood = "South of Broad";
             users.save(lindsay);
 
@@ -112,9 +112,9 @@ public class FurrFaceController {
             bryan.password = PasswordHash.createHash("1234");
             bryan.petName = "Callie";
             bryan.petType = "cat";
-            bryan.petRating = 8;
+            bryan.likes = 1;
             bryan.aboutMe = "Hi, I'm bryan and i have a kid!";
-            bryan.imageURL = "tumblr_lzri1rAyNd1qaxzado1_1280.png" ;
+            bryan.imageURL = "fluffy-kitten-ace.jpg" ;
 
             bryan.petAge = 5;
             bryan.neighborhood = "Mount Pleasant";
@@ -133,7 +133,7 @@ public class FurrFaceController {
                       String petName,
                       @RequestParam(defaultValue = "unknown") String selectPetType,
                       @RequestParam(defaultValue = "1") int petAge,
-                      @RequestParam(defaultValue = "0")  int petRating,
+                      @RequestParam(defaultValue = "0")  int likes,
                       @RequestParam(defaultValue = "User hasn't described themselves yet") String aboutMe,
                       @RequestParam(defaultValue = "westPhilly") String selectNeighborhood) throws Exception {
 
@@ -155,7 +155,7 @@ public class FurrFaceController {
             user.petAge = petAge;
             user.neighborhood = selectNeighborhood;
             user.aboutMe = aboutMe;
-            user.petRating = petRating;
+            user.likes = likes;
             users.save(user);
          session.setAttribute("username", username);
          response.sendRedirect("/#homePage");
@@ -189,7 +189,7 @@ public class FurrFaceController {
         User user = users.findOneByUsername(username);
 
        if(petRating!=null){
-           user.petRating += 1;
+           user.likes += 1;
        }
 
 

@@ -39,7 +39,7 @@ public class User {
     public String aboutMe;
 
     @Column(nullable = false)
-    public int petRating;
+    public int likes;
 
 //   @Column(nullable = false)
 //   public ArrayList<String> comments;
