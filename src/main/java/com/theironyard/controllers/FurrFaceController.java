@@ -46,11 +46,7 @@ public class FurrFaceController {
             terry.neighborhood = "James Island";
             users.save(terry);
 
-            Comment comment = new Comment();
-            comment.text = "THis is terry's test comment";
-            comment.user = terry;
 
-            comments.save(comment);
 
 
 
