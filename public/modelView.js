@@ -13,7 +13,7 @@ module.exports = Backbone.View.extend({
   events: {
     'click .notesubmit': 'comment',
     'click .likes': 'like',
-  },
+  },/*
   comment: function(event){
     event.preventDefault();
     var comment = $('input[name="thoughts"]').val();
@@ -27,7 +27,7 @@ module.exports = Backbone.View.extend({
     commentedOn.set({comments: commentedOn.get('comments').push(commentedOn)});
     commentedOn.save();
     this.$('input').val("");
-  },
+  },*/
   like: function(){
     // like other people's profiles and update likes
     var likedOne = this.model;
