@@ -47,9 +47,6 @@ public class FurrFaceController {
             users.save(terry);
 
 
-
-
-
             User doug = new User();
             doug.username = "Doug";
             doug.password = PasswordHash.createHash("1234");
@@ -58,7 +55,7 @@ public class FurrFaceController {
             doug.aboutMe = "I wake Doug up 5 minute before his alarm goes off.";
             doug.petType = "Cat";
             doug.imageURL = "Slack for iOS Upload-1.jpg";
-            doug.petAge = 11;
+            doug.petAge = 15;
             doug.neighborhood = "Mount Pleasant";
             users.save(doug);
 
@@ -126,13 +123,19 @@ public class FurrFaceController {
             user.password = PasswordHash.createHash(password);
             //user.fileName = imageURL;
 
-
+        if(!imageURL.getContentType().startsWith("image")){
+            throw new Exception("Only images are allowed!");
+        }
+        if (imageURL.isEmpty()){
+            throw new Exception("You must upload an image of your pet!");
+        }
 
             File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
             FileOutputStream fos = new FileOutputStream(photoFile);
             fos.write(imageURL.getBytes());
-
             user.imageURL = photoFile.getName();
+
+
             user.petName = petName;
             user.petType = selectPetType;
             user.petAge = petAge;
@@ -165,8 +168,7 @@ public class FurrFaceController {
     public List<User> users(HttpSession session,
                             String petType,
                             String neighborhood,
-                            Integer petAge,
-                            Integer id){
+                            Integer petAge){
         String username = (String) session.getAttribute("username");
         User user = users.findOneByUsername(username);
 
@@ -189,16 +191,22 @@ public class FurrFaceController {
         return user;
     }
 
-    @RequestMapping(path = "/user", method = RequestMethod.GET)
+    @RequestMapping(path = "/user" , method = RequestMethod.GET)
     public User user(HttpSession session){
       int id = (int) session.getAttribute("id");
         return users.findOneById(id);
     }
 
+
     @RequestMapping(path = "/user/{id}", method = RequestMethod.PUT)
     public void test(HttpSession session, @RequestBody User user, @PathVariable int id){
         users.save(user);
     }
+    @RequestMapping("/test")
+    public User selectUser(int id){
+        return users.findOneById(id);
+    }
+
 
     @RequestMapping("/editUser")
     public void editUser(HttpSession session,
@@ -229,8 +237,7 @@ public class FurrFaceController {
         if (petAge!=null){
             user.petAge = petAge;
         }
-
-        if (imageURL!=null) {
+        if (!imageURL.isEmpty()) {
             File photoFile = File.createTempFile("imageURL", imageURL.getOriginalFilename(), new File("public"));
             FileOutputStream fos = new FileOutputStream(photoFile);
             fos.write(imageURL.getBytes());
