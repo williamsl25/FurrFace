@@ -1,6 +1,6 @@
 module.exports = {
   pet: [
-    '<img src="<%= imageURL %>"><br>',
+    '<a href="#selectedUser/<%=id%>"><img src="<%= imageURL %>"></a><br>',
     '<h3><%= petName %></h3>  ',
     '<h4><%= petAge %> yrs old</h4> <p class="neighb"><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
@@ -124,5 +124,15 @@ aside:[
     '<button type="submit" class="btn btn-default">Submit</button>',
     '</form>'
     // '</div>'
+  ].join(""),
+  otherProfile: [
+    '<img src="<%= imageURL %>"><br><h3><%= petName %>, ',
+    '<%= petAge %></h3>',
+    '<br><p class="neighb"><%= neighborhood %></p>',
+    '<br><h4><%= aboutMe %></h4>',
+    '<div class="likesDiv">',
+    '<img class="theLike likes" src="redheart.png" style="height:60px; width:60px;">',
+    '<h5><%= likes %></h5>',
+    '</div>'
   ].join(""),
 };

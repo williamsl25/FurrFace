@@ -2,7 +2,7 @@ var Backbone = require('backbone');
 var _ = require('underscore');
 var $ = require('jquery');
 Backbone.$ = $;
-var ProfileView = require('./profileModelView');
+var SelectedView = require('./selectedModelView');
 var PetModel = require('./petModel');
 var AsideView = require('./asideView');
 
@@ -16,7 +16,7 @@ module.exports = Backbone.View.extend({
 
   },
   addOne: function(petModel){
-    var petView = new ProfileView({model: petModel});
+    var petView = new SelectedView({model: petModel});
     this.$el.append(petView.render().el);
   },
   addAll: function(){
