@@ -125,4 +125,10 @@ aside:[
     '</form>'
     // '</div>'
   ].join(""),
+  otherProfile: [
+    '<img src="<%= imageURL %>"><br><h3><%= petName %>, ',
+    '<%= petAge %></h3>',
+    '<p class="neighb"><%= neighborhood %></p>',
+    '<p><%= aboutMe %></p>',
+  ].join(""),
 };
