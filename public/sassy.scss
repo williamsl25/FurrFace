@@ -81,6 +81,7 @@ h4{
   margin: 0;
 }
 article{
+
   display: inline-block;
   padding: 5px;
   border: 5px solid white;
@@ -88,11 +89,11 @@ article{
   //overflow: hidden;
   margin: 10px;
   img{
+    text-align: center;
     max-height:210px;
     width: 210px;
     overflow: hidden;
     border-color: #e5f2ff;
-
   }
   }
 // li{
@@ -274,10 +275,12 @@ button .likes{
 .theFoot{
     margin: 0 auto;
     padding-left: 500px;
-
   }
 
 .main{
   overflow: hidden;
-
+}
+.pet img{
+  overflow: hidden;
+  vertical-align: top;
 }
