@@ -1,6 +1,6 @@
 module.exports = {
   pet: [
-    '<img src="<%= imageURL %>"><br>',
+    '<a href="#selectedUser/<%=id%>"><img src="<%= imageURL %>"></a><br>',
     '<h3><%= petName %></h3>  ',
     '<h4><%= petAge %> yrs old</h4> <p class="neighb"><%= neighborhood %></p>',
     '<p><%= aboutMe %></p>',
