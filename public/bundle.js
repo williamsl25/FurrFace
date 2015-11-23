@@ -13005,7 +13005,7 @@ module.exports = Backbone.View.extend({
   initialize: function(){
     this.addAll();
     var asideHTML = new AsideView();
-    self.$el.find('aside').html(asideHTML.render().el);
+    this.$el.find('aside').html(asideHTML.render().el);
 
   },
   addOne: function(petModel){
@@ -13124,8 +13124,11 @@ module.exports = Backbone.Router.extend({
     // var newUrl = "/test?id="+userID;
     var selected = new SelectedUserCollection({userID: userID});
     selected.fetch().then(function(){
-      new SelectedUserCollectionView({collection: selected});
+
       new HomePageView();
+      new SelectedUserCollectionView({collection: selected}
+      );
+
     });
   }
 
@@ -13146,7 +13149,7 @@ module.exports = Backbone.View.extend({
   initialize: function(){
     this.addAll();
     var asideHTML = new AsideView();
-    self.$el.find('aside').html(asideHTML.render().el);
+    this.$el.find('aside').html(asideHTML.render().el);
 
   },
   addOne: function(petModel){
@@ -13173,6 +13176,18 @@ module.exports = Backbone.View.extend({
   className: 'selectedPet',
   template: _.template(tmpl.otherProfile),// remember to make ownProfile in template
   initialize: function(){},
+  events:{
+    'click .likes': 'like',
+
+  },
+  like: function (){
+    var likedOne = this.model;
+     likedOne.set({likes: likedOne.get('likes')+1});
+     likedOne.save();
+     console.log("this model ", this.model);
+     console.log("likeOne", likedOne);
+     this.render();
+  },
   render: function(){
     var markup = this.template(this.model.toJSON());
     this.$el.html(markup);
@@ -13330,8 +13345,12 @@ aside:[
   otherProfile: [
     '<img src="<%= imageURL %>"><br><h3><%= petName %>, ',
     '<%= petAge %></h3>',
-    '<p class="neighb"><%= neighborhood %></p>',
-    '<p><%= aboutMe %></p>',
+    '<br><p class="neighb"><%= neighborhood %></p>',
+    '<br><h4><%= aboutMe %></h4>',
+    '<div class="likesDiv">',
+    '<img class="theLike likes" src="redheart.png" style="height:60px; width:60px;">',
+    '<h5><%= likes %></h5>',
+    '</div>'
   ].join(""),
 };
 

@@ -12,7 +12,7 @@ module.exports = Backbone.View.extend({
   initialize: function(){
     this.addAll();
     var asideHTML = new AsideView();
-    self.$el.find('aside').html(asideHTML.render().el);
+    this.$el.find('aside').html(asideHTML.render().el);
 
   },
   addOne: function(petModel){

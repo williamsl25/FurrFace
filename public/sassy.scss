@@ -85,7 +85,7 @@ article{
   padding: 5px;
   border: 5px solid white;
   width: 360px;
-  overflow: hidden;
+  //overflow: hidden;
   margin: 10px;
   img{
     max-height:210px;
@@ -207,12 +207,27 @@ section{
   margin: 0 auto;
   text-align: center;
 }
-.myEdit h3{
+.myEdit, .selectedPet h3{
   padding-top: 20px;
 }
 .myEdit img{
   max-height: 300px;
 }
+.selectedPet img{
+  max-height: 500px;
+}
+.selectedPet{
+  margin: 0 auto;
+  padding-top: 15px;
+  padding-bottom: 15px;
+  padding-left: 250px;
+  text-align: center;
+  border: none;
+  width: 600px;
+  height: 425px;
+}
+
+
 ul{
   padding: 0;
   margin: 0 auto;
