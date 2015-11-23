@@ -13,6 +13,7 @@ var NeighborhoodCollection = require('./NeighborhoodCollection');
 var AsideView = require('./asideView');
 var TopFuzziesCollection = require('./topFuzziesCollection');
 var SelectedUserCollection = require('./selectedUserCollection');
+var SelectedUserCollectionView = require('./selectedCollectionView');
 
 
 module.exports = Backbone.Router.extend({
@@ -73,7 +74,7 @@ module.exports = Backbone.Router.extend({
     // var newUrl = "/test?id="+userID;
     var selected = new SelectedUserCollection({userID: userID});
     selected.fetch().then(function(){
-      new PetCollectionView({collection: selected});
+      new SelectedUserCollectionView({collection: selected});
       new HomePageView();
     });
   }
