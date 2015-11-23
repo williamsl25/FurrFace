@@ -12,6 +12,7 @@ var PetsLikeMeCollection = require('./petsLikeMeCollection');
 var NeighborhoodCollection = require('./NeighborhoodCollection');
 var AsideView = require('./asideView');
 var TopFuzziesCollection = require('./topFuzziesCollection');
+var SelectedUserCollection = require('./selectedUserCollection');
 
 
 module.exports = Backbone.Router.extend({
@@ -22,7 +23,8 @@ module.exports = Backbone.Router.extend({
     'neighbors': 'neighborhood',
     'top': 'topFuzzie',
     'newUser': 'newUser',
-    '': 'login'
+    '': 'login',
+    'selectedUser/:userID': 'selected'
   },
   initialize: function (options) {
     new LayOutView('login');
@@ -65,7 +67,15 @@ module.exports = Backbone.Router.extend({
     tops.fetch().then(function () {
       new PetCollectionView({collection: tops });
       new HomePageView();
-  });
+    });
+  },
+  selected: function(userID){
+    // var newUrl = "/test?id="+userID;
+    var selected = new SelectedUserCollection({userID: userID});
+    selected.fetch().then(function(){
+      new PetCollectionView({collection: selected});
+      new HomePageView();
+    });
   }
 
 });
