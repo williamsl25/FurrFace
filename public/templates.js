@@ -128,7 +128,11 @@ aside:[
   otherProfile: [
     '<img src="<%= imageURL %>"><br><h3><%= petName %>, ',
     '<%= petAge %></h3>',
-    '<p class="neighb"><%= neighborhood %></p>',
-    '<p><%= aboutMe %></p>',
+    '<br><p class="neighb"><%= neighborhood %></p>',
+    '<br><h4><%= aboutMe %></h4>',
+    '<div class="likesDiv">',
+    '<img class="theLike likes" src="redheart.png" style="height:60px; width:60px;">',
+    '<h5><%= likes %></h5>',
+    '</div>'
   ].join(""),
 };

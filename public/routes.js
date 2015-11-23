@@ -74,8 +74,11 @@ module.exports = Backbone.Router.extend({
     // var newUrl = "/test?id="+userID;
     var selected = new SelectedUserCollection({userID: userID});
     selected.fetch().then(function(){
-      new SelectedUserCollectionView({collection: selected});
+
       new HomePageView();
+      new SelectedUserCollectionView({collection: selected}
+      );
+
     });
   }
 
