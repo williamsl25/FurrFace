@@ -11,10 +11,10 @@ Technologies used:
 ####Contributers:
 Frontend:
 Backebone
-https://github.com/williamsl25
-https://github.com/katevontaine
-https://github.com/tken85
+* **Lindsay Williams** - [Github](https://github.com/williamsl25)
+* **Kate Wilson** - [Github](https://github.com/katevontaine)
+* **Terry Kennair** - [Github](https://github.com/tken85)
 
 Backend - Java
-https://github.com/B-Bennett
-https://github.com/dougscott2
+* **Doug Scott** - [Github](https://github.com/dougscott2)
+* **Bryan Bennett** - [Github](https://github.com/B-Bennett)
